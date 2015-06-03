@@ -1,5 +1,6 @@
 package service;
 
+import akka.util.Crypt;
 import com.google.inject.Inject;
 import models.Aluno;
 import models.Permissao;
@@ -21,7 +22,8 @@ public class AlunoService {
         aluno.usuario.dataDeCadastro = DateTime.now();
         aluno.usuario.permissao = Permissao.ALUNO;
         Crypto crypto = Play.application().injector().instanceOf(Crypto.class);
-        aluno.usuario.senha = crypto.encryptAES(aluno.usuario.senha);
+
+        aluno.usuario.senha = Crypt.sha1(aluno.usuario.senha);
         aluno.usuario.token = crypto.generateToken();
         alunoRepository.salvar(Aluno.class,aluno);
     }

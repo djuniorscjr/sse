@@ -1,0 +1,18 @@
+@(usuarioForm: DynamicForm)(implicit flash: play.mvc.Http.Flash)
+
+@import play.data.DynamicForm
+@import helper._
+@main("Login") {
+  @if(flash.get("error")) {
+    <p style="color : red">@flash.get("error")</p>
+  }
+  @if(flash.get("sucesso")) {
+    <p style="color : blue">@flash.get("sucesso")</p>
+  }
+  @form(routes.Application.autenticacao()) {
+    @inputText(usuarioForm("email"))
+    @inputText(usuarioForm("senha"))
+    <input type="submit" value="Submit" />
+  }
+
+}

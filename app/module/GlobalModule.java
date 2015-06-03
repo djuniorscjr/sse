@@ -5,8 +5,10 @@ import com.google.inject.Provider;
 import repository.AlunoRepository;
 import repository.BasicRepository;
 import repository.ProfessorRepository;
+import repository.UsuarioRepository;
 import service.AlunoService;
 import service.ProfessorService;
+import service.UsuarioService;
 
 /**
  * Created by Domingos Junior on 01/06/2015.
@@ -37,6 +39,18 @@ public class GlobalModule extends AbstractModule {
             @Override
             public ProfessorRepository get() {
                 return new ProfessorRepository();
+            }
+        });
+        bind(UsuarioService.class).toProvider(new Provider<UsuarioService>() {
+            @Override
+            public UsuarioService get() {
+                return new UsuarioService();
+            }
+        });
+        bind(UsuarioRepository.class).toProvider(new Provider<UsuarioRepository>() {
+            @Override
+            public UsuarioRepository get() {
+                return new UsuarioRepository();
             }
         });
     }
