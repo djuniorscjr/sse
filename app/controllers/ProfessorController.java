@@ -12,11 +12,13 @@ import play.db.ebean.Transactional;
 import play.libs.Crypto;
 import play.mvc.Controller;
 import play.mvc.Result;
+import play.mvc.Security;
 import service.ProfessorService;
 
 /**
  * Created by Domingos Junior on 29/05/2015.
  */
+@Security.Authenticated(AutenticacaoSegura.class)
 public class ProfessorController extends Controller {
 
     final static Form<Professor> professorForm = Form.form(Professor.class);

@@ -9,8 +9,6 @@ import models.Usuario;
 public class UsuarioRepository extends BasicRepository {
 
     public Usuario autenticacao(String email, String senha){
-        System.out.println(email);
-        System.out.println(senha);
         return Ebean.find(Usuario.class).where().eq("email", email).eq("senha", senha).findUnique();
     }
 }

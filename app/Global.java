@@ -3,6 +3,11 @@ import com.google.inject.Injector;
 import module.GlobalModule;
 import play.Application;
 import play.GlobalSettings;
+import play.libs.F;
+import play.mvc.Http;
+import play.mvc.Result;
+import play.mvc.Results;
+import views.html.error;
 
 /**
  * Created by Domingos Junior on 01/06/2015.
@@ -12,4 +17,15 @@ public class Global extends GlobalSettings {
     public void onStart(Application application) {
         Injector injector = Guice.createInjector(new GlobalModule());
     }
+
+    @Override
+    public F.Promise<Result> onHandlerNotFound(Http.RequestHeader arg){
+        return F.Promise.<Result>pure(Results.notFound(error.render("Página não encontrada")));
+    }
+
+    @Override
+    public F.Promise<Result> onError(Http.RequestHeader var1, Throwable var2){
+        return F.Promise.<Result>pure(Results.internalServerError(error.render("Página não encontrada")));
+    }
+
 }

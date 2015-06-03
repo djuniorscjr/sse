@@ -3,6 +3,7 @@
 @import play.data.DynamicForm
 @import helper._
 @main("Login") {
+
   @if(flash.get("error")) {
     <p style="color : red">@flash.get("error")</p>
   }
