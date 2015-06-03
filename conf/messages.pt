@@ -1,0 +1,7 @@
+validation.errors = Por favor, corrija os errors do formulário.
+validation.ean.duplicate = O código de barra desse produto já existe.
+constraint.required= Obrigátorio
+error.unique= Esse registro já existe
+format.numeric= Numeral
+error.number = Este campo deve ser do tipo numerico
+error.required = Este campo é obrigátorio

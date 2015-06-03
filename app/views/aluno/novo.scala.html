@@ -1,0 +1,21 @@
+@(alunoForm: play.data.Form[Aluno])(implicit flash: play.mvc.Http.Flash)
+
+@import helper._
+
+@main("Cadastrar Novo Aluno"){
+  @if(alunoForm.hasErrors){
+    <p style="color:red">Corrija os erros abaixo!</p>
+  }
+  @if(flash.get("sucesso")){
+    <p style="color:blue">@flash.get("sucesso")</p>
+  }
+  @form(routes.AlunoController.cria()){
+    @inputText(alunoForm("nome"))
+    @inputText(alunoForm("matricula"))
+    @inputText(alunoForm("usuario.email"))
+    @inputText(alunoForm("usuario.senha"))
+    <input type="submit" value="Submit"  />
+  }
+
+}
+

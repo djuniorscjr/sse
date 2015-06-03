@@ -1,0 +1,20 @@
+@(professorForm: play.data.Form[Professor])(implicit flash: play.mvc.Http.Flash)
+
+@import helper._
+
+@main("Cadastrar Novo Professores"){
+  @if(professorForm.hasErrors){
+    <p style="color:red">Corrija os erros abaixo!</p>
+  }
+  @if(flash.get("sucesso")){
+    <p style="color:blue">@flash.get("sucesso")</p>
+  }
+  @form(routes.ProfessorController.cria()){
+    @inputText(professorForm("nome"))
+    @inputText(professorForm("usuario.email"))
+    @inputText(professorForm("usuario.senha"))
+    <input type="submit" value="Submit"  />
+  }
+
+}
+
