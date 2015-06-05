@@ -1,6 +1,6 @@
 package controllers;
 
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import models.Usuario;
 import play.Play;
 import play.data.DynamicForm;
@@ -21,12 +21,11 @@ public class Application extends Controller {
     private DynamicForm loginForm = Form.form();
 
     public Result index() {
-        //ctx().response().setCookie("italo","o0o");
-        return ok(index.render("Your new application is ready."));
+        return ok(index.render("Your new application is ready.",session()));
     }
 
     public Result login(){
-        return ok(login.render(loginForm, flash()));
+        return ok(login.render(loginForm,session(),flash()));
     }
 
     public Result autenticacao(){

@@ -10,6 +10,7 @@ libraryDependencies ++= Seq(
   javaJdbc,
   cache,
   javaWs,
+  "com.mandrillapp.wrapper.lutung" % "lutung" % "0.0.5",
   "org.postgresql" % "postgresql" % "9.3-1100-jdbc41"
 )
 

@@ -1,8 +1,12 @@
-@(message: String)
-
+@(message: String)(implicit session : play.mvc.Http.Session)
 @main("Welcome to Play") {
 
-    <a href="@routes.Application.login()">Entrar</a> <br />
-    <a href="@routes.Application.logout()">Sair</a> <br />
-
+      @if(!session.get("email")) {
+          <a href="@routes.Application.login()">Entrar</a> <br />
+      }else {
+          @session.get("email")<a href="@routes.Application.logout()">Sair</a> <br />
+          @if(session.get("permissao").equals("ADMINISTRADOR") || session.get("permissao").equals("COORDENADOR") || session.get("permissao").equals("PROFESSOR_DISCIPLINA")){
+              <a href="@routes.ProfessorController.solicitarRegistro()">Solicitar Registro ao Professor</a> <br />
+          }
+      }
 }

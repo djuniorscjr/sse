@@ -1,8 +1,8 @@
-@(usuarioForm: DynamicForm)(implicit session : play.mvc.Http.Session, flash: play.mvc.Http.Flash)
+@(srfForm: DynamicForm)(implicit session : play.mvc.Http.Session, flash: play.mvc.Http.Flash)
 
 @import play.data.DynamicForm
 @import helper._
-@main("Login") {
+@main("Solicitação Registro Professor") {
 
   @if(flash.get("error")) {
     <p style="color : red">@flash.get("error")</p>
@@ -10,9 +10,8 @@
   @if(flash.get("sucesso")) {
     <p style="color : blue">@flash.get("sucesso")</p>
   }
-  @form(routes.Application.autenticacao()) {
-    @inputText(usuarioForm("email"))
-    @inputText(usuarioForm("senha"))
+  @form(routes.ProfessorController.enviarSolicitacaoRegistro()) {
+    @textarea(srfForm("emails"))
     <input type="submit" value="Submit" />
   }
 }

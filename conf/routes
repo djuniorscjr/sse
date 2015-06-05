@@ -8,8 +8,14 @@ GET         /                    @controllers.Application.index()
 GET         /aluno               @controllers.AlunoController.novo()
 POST        /aluno               @controllers.AlunoController.cria()
 
-GET         /professor           @controllers.ProfessorController.novo()
-POST        /professor           @controllers.ProfessorController.cria()
+
+GET         /professor                              @controllers.ProfessorController.novo()
+POST        /professor                              @controllers.ProfessorController.cria()
+GET         /professor/solicitarRegistro            @controllers.ProfessorController.solicitarRegistro()
+POST        /professor/solicitarRegistro            @controllers.ProfessorController.enviarSolicitacaoRegistro()
+
+GET         /solicitarRegistro/:token               @controllers.SRPController.continuarSrp(token: String)
+POST        /solicitarRegistro/:id                  @controllers.SRPController.salvar(id : Long)
 
 GET         /login               @controllers.Application.login()
 GET         /logout              @controllers.Application.logout()

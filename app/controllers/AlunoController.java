@@ -1,7 +1,7 @@
 package controllers;
 
 import com.avaje.ebean.Ebean;
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import models.Aluno;
 import models.Permissao;
 import models.Usuario;
@@ -25,16 +25,16 @@ public class AlunoController extends Controller {
     @Inject
     private AlunoService alunoService;
 
-    final static Form<Aluno> alunoForm = Form.form(Aluno.class);
+    private Form<Aluno> alunoForm = Form.form(Aluno.class);
 
     public Result novo(){
-        return ok(views.html.aluno.novo.render(alunoForm, flash()));
+        return ok(views.html.aluno.novo.render(alunoForm, session(), flash()));
     }
 
     public Result cria(){
         Form<Aluno> aluno = Form.form(Aluno.class).bindFromRequest();
         if(aluno.hasErrors()){
-            return badRequest(views.html.aluno.novo.render(aluno,flash()));
+            return badRequest(views.html.aluno.novo.render(aluno,session(), flash()));
         }else{
             alunoService.salvar(aluno.get());
             flash("sucesso", "Aluno cadastrado com sucesso!");

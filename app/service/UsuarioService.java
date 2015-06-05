@@ -1,7 +1,7 @@
 package service;
 
 import akka.util.Crypt;
-import com.google.inject.Inject;
+import javax.inject.Inject;
 import models.Usuario;
 import play.Play;
 import play.i18n.Messages;
@@ -33,5 +33,14 @@ public class UsuarioService {
         if(email.isEmpty() || senha.isEmpty() || email.trim().isEmpty() || senha.trim().isEmpty()){
             throw new RegraDeNegocioException(Messages.get("error.all.required"));
         }
+    }
+
+    public Boolean jaExisteEmailCadastrado(String email){
+        Usuario usuario = usuarioRepository.retornaObjetoPorCampo(Usuario.class, "email", email);
+        return usuario == null? false : true;
+    }
+
+    public Usuario retornaUsuarioPorToken(String token){
+        return usuarioRepository.retornaObjetoPorCampo(Usuario.class, "token", token);
     }
 }

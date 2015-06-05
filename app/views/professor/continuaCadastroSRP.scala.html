@@ -1,0 +1,19 @@
+@(srpForm: DynamicForm,usuario :Usuario)(implicit session : play.mvc.Http.Session, flash: play.mvc.Http.Flash)
+
+@import play.data.DynamicForm
+@import helper._
+@main("Solicitação Registro Professor") {
+
+    @if(flash.get("error")) {
+        <p style="color : red">@flash.get("error")</p>
+    }
+    @if(flash.get("sucesso")) {
+        <p style="color : blue">@flash.get("sucesso")</p>
+    }
+    @form(routes.SRPController.salvar(usuario.id)) {
+        email : @usuario.email
+        @inputText(srpForm("nome"))
+        @inputText(srpForm("senha"))
+        <input type="submit" value="Submit" />
+    }
+}

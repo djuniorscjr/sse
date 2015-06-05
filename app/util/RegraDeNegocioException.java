@@ -5,9 +5,7 @@ package util;
  */
 public class RegraDeNegocioException extends Exception {
 
-    public RegraDeNegocioException(){
-
-    }
+    public RegraDeNegocioException(){}
 
     public RegraDeNegocioException(String mensagem){
         super(mensagem);

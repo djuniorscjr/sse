@@ -9,4 +9,7 @@ import play.db.ebean.Transactional;
  */
 public class ProfessorRepository extends BasicRepository{
 
+    public Professor retornaProfessorPorUsuarioId(Long id){
+        return Ebean.find(Professor.class).fetch("usuario").where().eq("usuario.id", id).findUnique();
+    }
 }

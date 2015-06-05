@@ -1,12 +1,16 @@
 validation.errors = Por favor, corrija os errors do formulário.
 validation.ean.duplicate = O código de barra desse produto já existe.
 constraint.required= Obrigátorio
-error.unique= Esse registro já existe
+error.unique = Esse registro já existe
+error.pendency = Existe uma solicitação pendente para esse email
 format.numeric= Numeral
 error.number = Este campo deve ser do tipo numerico
 error.required = Este campo é obrigátorio
 error.all.required = Todos os campos são obrigátorios
 error.technical = Ocorreu um problema, entre em contato com administração!
+error.emails = Existe um email inválido
+error.email  = Email inválido
 invalid.user.or.password = Email ou senha inválido
 account.not.validated = Usuário inativo, entre em contato com administração!
 youve.been.logged.out = Você saiu do SSE!
+infor.new.srp = Observação: Para mais de uma solicitação, separe os emails com virgula. Ex.: meunome@meuemail.com,seunome@seuemail.com
