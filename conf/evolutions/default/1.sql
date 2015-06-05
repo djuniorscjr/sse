@@ -27,8 +27,8 @@ create table usuario (
   token                     varchar(255),
   ativo                     boolean,
   data_de_cadastro          timestamp,
-  permissao                 varchar(20),
-  constraint ck_usuario_permissao check (permissao in ('ADMINISTRADOR','COORDENADOR','PROFESSOR_DISCIPLINA','PROFESSOR_ORIENTADOR','ALUNO')),
+  permissao                 varchar(46),
+  constraint ck_usuario_permissao check (permissao in ('ADMINISTRADOR','COORDENADOR','PROFESSOR_DISCIPLINA','PROFESSOR_ORIENTADOR','ALUNO','SEM_ACESSO')),
   constraint pk_usuario primary key (id))
 ;
 

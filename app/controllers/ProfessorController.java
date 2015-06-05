@@ -1,5 +1,6 @@
 package controllers;
 
+import action.Controle;
 import com.avaje.ebean.Ebean;
 import com.google.inject.Inject;
 import models.Aluno;
@@ -26,6 +27,7 @@ public class ProfessorController extends Controller {
     @Inject
     private ProfessorService professorService;
 
+    @Controle({Permissao.ADMINISTRADOR, Permissao.COORDENADOR,Permissao.PROFESSOR_DISCIPLINA})
     public Result novo(){
         return ok(views.html.professor.novo.render(professorForm,flash()));
     }

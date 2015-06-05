@@ -17,7 +17,8 @@ public class AutenticacaoSegura extends Security.Authenticator {
     }
 
     public Result onUnauthorized(Http.Context ctx) {
-        return ok(views.html.error.render("Para continuar precisa estar logado"));
+        ctx.flash().put("error", "Para continuar precisa estar logado");
+        return redirect(routes.Application.login());
     }
 
 }
