@@ -9,6 +9,8 @@ import play.libs.Crypto;
 import repository.UsuarioRepository;
 import util.RegraDeNegocioException;
 
+import java.util.regex.Pattern;
+
 /**
  * Created by Domingos Junior on 03/06/2015.
  */
@@ -43,4 +45,30 @@ public class UsuarioService {
     public Usuario retornaUsuarioPorToken(String token){
         return usuarioRepository.retornaObjetoPorCampo(Usuario.class, "token", token);
     }
+
+    public Usuario retornaUsuarioPorId(Long id){
+        return usuarioRepository.getObjeto(Usuario.class, id);
+    }
+
+    public Usuario atualizar(Usuario usuario, String confirmaSenha, String email) throws RegraDeNegocioException {
+        this.validaAtualizacao(usuario, confirmaSenha, email);
+        usuario.senha = Crypt.sha1(usuario.senha);
+        return usuarioRepository.editar(Usuario.class, usuario);
+    }
+
+    private void validaAtualizacao(Usuario usuario, String confirmaSenha, String email) throws RegraDeNegocioException {
+        System.out.println(email);
+        Pattern regex = java.util.regex.Pattern.compile("\\b[a-zA-Z0-9.!#$%&\'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\\b");
+        if(usuario.email.isEmpty() || usuario.senha.isEmpty() || usuario.email.trim().isEmpty() || usuario.senha.trim().isEmpty()){
+            throw new RegraDeNegocioException(Messages.get("error.all.required"));
+        } if (!regex.matcher(usuario.email).matches()) {
+            throw new RegraDeNegocioException(Messages.get("error.emails"));
+        }else if(this.jaExisteEmailCadastrado(usuario.email) && !usuario.email.equals(email)){
+            throw new RegraDeNegocioException(Messages.get("error.unique"));
+        }else if(!usuario.senha.equals(confirmaSenha)){
+            throw new RegraDeNegocioException(Messages.get("error.confirmation.password"));
+        }
+    }
+
+
 }

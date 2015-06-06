@@ -1,0 +1,21 @@
+@(formUsuario: DynamicForm)(implicit session : play.mvc.Http.Session, flash: play.mvc.Http.Flash)
+
+@import play.data.DynamicForm
+@import helper._
+
+@main("Editar Usuario") {
+
+  @if(flash.get("error")) {
+    <p style="color : red">@flash.get("error")</p>
+  }
+  @if(flash.get("sucesso")) {
+    <p style="color : blue">@flash.get("sucesso")</p>
+  }
+  @form(routes.UsuarioController.edicao()) {
+      @inputText(formUsuario("email"))
+      @inputText(formUsuario("senha"))
+      @inputText(formUsuario("confirmaSenha"))
+      <input type="submit" value="Submit" />
+
+  }
+}

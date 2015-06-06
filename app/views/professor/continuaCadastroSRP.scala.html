@@ -7,13 +7,14 @@
     @if(flash.get("error")) {
         <p style="color : red">@flash.get("error")</p>
     }
-    @if(flash.get("sucesso")) {
-        <p style="color : blue">@flash.get("sucesso")</p>
-    }
-    @form(routes.SRPController.salvar(usuario.id)) {
-        email : @usuario.email
-        @inputText(srpForm("nome"))
-        @inputText(srpForm("senha"))
-        <input type="submit" value="Submit" />
+    @if(flash.get("info")) {
+        <p style="color : blue">@flash.get("info")</p>
+    }else {
+        @form(routes.SRPController.salvar(usuario.id)) {
+            email : @usuario.email
+            @inputText(srpForm("nome"))
+            @inputText(srpForm("senha"))
+            <input type="submit" value="Submit" />
+        }
     }
 }

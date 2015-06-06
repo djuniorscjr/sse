@@ -22,6 +22,8 @@ GET         /logout              @controllers.Application.logout()
 
 POST        /login               @controllers.Application.autenticacao()
 
+GET         /editar              @controllers.UsuarioController.editar()
+POST        /edicao              @controllers.UsuarioController.edicao()
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file        controllers.Assets.versioned(path="/public", file: Asset)

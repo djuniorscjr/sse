@@ -62,7 +62,7 @@ public class ProfessorService {
         String url = resource.toString().replace("file:/", "");
 
         String readArquivo = new String(Files.readAllBytes(Paths.get(url)));
-        readArquivo = readArquivo.replace("#LINK#", "http://localhost:9000/professor/" + token);
+        readArquivo = readArquivo.replace("#LINK#", "http://localhost:9000/solicitarRegistro/" + token);
         Email email = new Email(readArquivo, "[SSE] Solicitação de Cadastro", recipients);
         email.enviaEmail();
     }
@@ -97,5 +97,21 @@ public class ProfessorService {
 
     public Professor retornaProfessorProUsuarioId(Long id){
         return professorRepository.retornaProfessorPorUsuarioId(id);
+    }
+
+    public void alterarProfessor(Professor professor) throws RegraDeNegocioException {
+        this.validaAlteracaoProfessor(professor);
+        professor.usuario.ativo = true;
+        professor.usuario.permissao = Permissao.PROFESSOR_ORIENTADOR;
+        professor.usuario.senha = Crypt.sha1(professor.usuario.senha);
+        Crypto crypto = Play.application().injector().instanceOf(Crypto.class);
+        professor.usuario.token = crypto.generateToken();
+        professorRepository.editar(Professor.class, professor);
+    }
+
+    private void validaAlteracaoProfessor(Professor professor) throws RegraDeNegocioException {
+        if(professor.nome == null || professor.usuario.senha == null || professor.nome.isEmpty() || professor.nome.trim().isEmpty() || professor.usuario.senha.isEmpty() || professor.usuario.senha.trim().isEmpty()){
+            throw new RegraDeNegocioException(Messages.get("error.all.required"));
+        }
     }
 }
