@@ -38,13 +38,13 @@ public class ProfessorController extends Controller {
 
 
     public Result novo(){
-        return ok(views.html.professor.novo.render(professorForm,session(),flash()));
+        return ok(views.html.professor.novo.render(professorForm,session(),request(),flash()));
     }
 
     public Result cria(){
         Form<Professor> professor = Form.form(Professor.class).bindFromRequest();
         if(professor.hasErrors()){
-            return badRequest(views.html.professor.novo.render(professor,session(),flash()));
+            return badRequest(views.html.professor.novo.render(professor,session(),request(),flash()));
         }else{
             professorService.salvar(professor.get());
             flash("sucesso", "Professor cadastrado com sucesso!");
@@ -55,7 +55,7 @@ public class ProfessorController extends Controller {
 
     public F.Promise<Result> solicitarRegistro(){
         flash("sucesso", Messages.get("infor.new.srp"));
-        return F.Promise.promise(() -> ok(views.html.professor.solicitarRegistro.render(srpForm, session(), flash())));
+        return F.Promise.promise(() -> ok(views.html.professor.solicitarRegistro.render(srpForm, session(),request(), flash())));
     }
 
     public F.Promise<Result> enviarSolicitacaoRegistro(){
@@ -66,13 +66,13 @@ public class ProfessorController extends Controller {
             professorService.enviarSolicitacaoRegistro(emails);
         }catch (RegraDeNegocioException e){
             flash("error", e.getMessage());
-            return F.Promise.promise(() -> badRequest(views.html.professor.solicitarRegistro.render(form, session(), flash())));
+            return F.Promise.promise(() -> badRequest(views.html.professor.solicitarRegistro.render(form, session(),request(), flash())));
         } catch (IOException e) {
             e.printStackTrace();
             flash("error", Messages.get("error.technical"));
         }
         flash("sucesso", "Operação realizada com sucesso!");
-        return F.Promise.promise(() -> ok(views.html.professor.solicitarRegistro.render(srpForm, session(), flash())));
+        return F.Promise.promise(() -> ok(views.html.professor.solicitarRegistro.render(srpForm, session(),request(), flash())));
     }
 
 }

@@ -38,9 +38,9 @@ public class SRPController extends Controller {
             return ok(error.render("Página não encontrada."));
         }else if(usuario.ativo){
             flash("info", "Solicitação de Registro para Professor Orientador já utilizada.");
-            return ok(views.html.professor.continuaCadastroSRP.render(srpForm,usuario,session(),flash()));
+            return ok(views.html.professor.continuaCadastroSRP.render(srpForm,usuario,session(),request(),flash()));
         }
-        return ok(views.html.professor.continuaCadastroSRP.render(srpForm,usuario,session(),flash()));
+        return ok(views.html.professor.continuaCadastroSRP.render(srpForm,usuario,session(),request(),flash()));
     }
 
     public Result salvar(Long id){
@@ -48,7 +48,7 @@ public class SRPController extends Controller {
         Professor professor = professorService.retornaProfessorProUsuarioId(id);
         if(professor.usuario.ativo){
             flash("info", "Solicitação de Registro para Professor Orientador já utilizada.");
-            return ok(views.html.professor.continuaCadastroSRP.render(srpForm,professor.usuario,session(),flash()));
+            return ok(views.html.professor.continuaCadastroSRP.render(srpForm,professor.usuario,session(),request(),flash()));
         }
         professor.nome = form.data().get("nome");
         professor.usuario.senha = form.data().get("senha");
@@ -56,9 +56,9 @@ public class SRPController extends Controller {
             professorService.alterarProfessor(professor);
         }catch (RegraDeNegocioException e){
             flash("error", e.getMessage());
-            return ok(views.html.professor.continuaCadastroSRP.render(form,professor.usuario,session(),flash()));
+            return ok(views.html.professor.continuaCadastroSRP.render(form,professor.usuario,session(),request(),flash()));
         }
         flash("info", Messages.get("op.success"));
-        return ok(views.html.professor.continuaCadastroSRP.render(srpForm,professor.usuario,session(),flash()));
+        return ok(views.html.professor.continuaCadastroSRP.render(srpForm,professor.usuario,session(),request(),flash()));
     }
 }

@@ -1,0 +1,4 @@
+@(field: Field, label: String = "CHANGEME")
+
+<input type="text" id="@field.id" name="@field.name" value="@field.value.getOrElse("")" class="@if(!field.hasErrors) {validate}else{invalid}" required>
+<label for="@field.id">@label</label>

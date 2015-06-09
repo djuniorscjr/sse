@@ -28,13 +28,13 @@ public class AlunoController extends Controller {
     private Form<Aluno> alunoForm = Form.form(Aluno.class);
 
     public Result novo(){
-        return ok(views.html.aluno.novo.render(alunoForm, session(), flash()));
+        return ok(views.html.aluno.novo.render(alunoForm, session(),request(), flash()));
     }
 
     public Result cria(){
         Form<Aluno> aluno = Form.form(Aluno.class).bindFromRequest();
         if(aluno.hasErrors()){
-            return badRequest(views.html.aluno.novo.render(aluno,session(), flash()));
+            return badRequest(views.html.aluno.novo.render(aluno,session(),request(), flash()));
         }else{
             alunoService.salvar(aluno.get());
             flash("sucesso", "Aluno cadastrado com sucesso!");

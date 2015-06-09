@@ -21,11 +21,11 @@ public class Application extends Controller {
     private DynamicForm loginForm = Form.form();
 
     public Result index() {
-        return ok(index.render("Your new application is ready.",session()));
+        return ok(index.render("Your new application is ready.",session(),request()));
     }
 
     public Result login(){
-        return ok(login.render(loginForm,session(),flash()));
+        return ok(login.render(loginForm,session(),request(),flash()));
     }
 
     public Result autenticacao(){

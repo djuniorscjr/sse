@@ -33,7 +33,7 @@ public class UsuarioController extends Controller {
         anyData.put("email", usuario.email);
         anyData.put("password", "");
         DynamicForm usuarioForm = Form.form().fill(anyData);
-        return ok(views.html.usuario.editar.render(usuarioForm,session(),flash()));
+        return ok(views.html.usuario.editar.render(usuarioForm,session(),request(),flash()));
     }
 
     public Result edicao(){
@@ -49,10 +49,10 @@ public class UsuarioController extends Controller {
             session().put("email", atualizado.email);
         }catch (RegraDeNegocioException e){
             flash("error",e.getMessage());
-            return ok(views.html.usuario.editar.render(form, session(), flash()));
+            return ok(views.html.usuario.editar.render(form, session(),request(), flash()));
         }
 
         flash("sucesso", Messages.get("op.success"));
-        return ok(views.html.usuario.editar.render(form, session(), flash()));
+        return ok(views.html.usuario.editar.render(form, session(),request(), flash()));
     }
 }

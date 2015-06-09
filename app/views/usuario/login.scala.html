@@ -1,18 +1,26 @@
-@(usuarioForm: DynamicForm)(implicit session : play.mvc.Http.Session, flash: play.mvc.Http.Flash)
+@(usuarioForm: DynamicForm)(implicit session : play.mvc.Http.Session,request : play.mvc.Http.Request, flash: play.mvc.Http.Flash)
 
 @import play.data.DynamicForm
 @import helper._
+@import views.html.materializecss._
 @main("Login") {
-
-  @if(flash.get("error")) {
-    <p style="color : red">@flash.get("error")</p>
-  }
-  @if(flash.get("sucesso")) {
-    <p style="color : blue">@flash.get("sucesso")</p>
-  }
-  @form(routes.Application.autenticacao()) {
-    @inputText(usuarioForm("email"))
-    @inputText(usuarioForm("senha"))
-    <input type="submit" value="Submit" />
-  }
+  <div class="form_wrapper">
+    <h3 class="red-text">SSE</h3>
+    @form(routes.Application.autenticacao()) {
+      @if(flash.get("error")) {
+        <p style="color : red" class="center-align">@flash.get("error")</p>
+      }
+      <div class="element-wrapper">
+        @text(usuarioForm("email"),
+          label = "Email")
+      </div>
+      <div class="element-wrapper">
+        @password(usuarioForm("senha"),
+          label = "Senha")
+      </div>
+      <div class="element-wrapper">
+        <input type="submit" value="Entrar">
+      </div>
+    }
+  </div>
 }
