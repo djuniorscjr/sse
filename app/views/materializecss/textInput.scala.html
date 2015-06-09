@@ -1,0 +1,11 @@
+@(elements: views.html.helper.FieldElements)
+
+@import views.html.helper.FieldElements
+
+<input type="text" id="@elements.field.id" name="@elements.field.name" value="@elements.field.value.getOrElse("")" class="@if(!elements.field.hasErrors) {validate}else{invalid}" required>
+<label for="@elements.field.id">@elements.args.get('_label)</label>
+<span class="small">
+    @if(elements.field.hasErrors){
+        <span class="badge red white-text">Erro</span><span class="red-text"></span> @elements.errors.mkString(", ")
+    }
+</span>

@@ -2,7 +2,8 @@
 
 @import play.data.DynamicForm
 @import helper._
-@import views.html.materializecss._
+@import util.Materialize._
+
 @main("Login") {
   <div class="form_wrapper">
     <h3 class="red-text">SSE</h3>
@@ -11,16 +12,17 @@
         <p style="color : red" class="center-align">@flash.get("error")</p>
       }
       <div class="element-wrapper">
-        @text(usuarioForm("email"),
-          label = "Email")
+        @inputText(usuarioForm("email"),
+          '_label -> "Email")(text, implicitly[Messages])
       </div>
       <div class="element-wrapper">
-        @password(usuarioForm("senha"),
-          label = "Senha")
+        @inputText(usuarioForm("senha"),
+          '_label -> "Senha")(password, implicitly[Messages])
       </div>
       <div class="element-wrapper">
-        <input type="submit" value="Entrar">
+        <button style="width: 100%" class="btn waves-effect waves-light btn-large col s12 m6" type="submit" name="action">Entra</button>
       </div>
+      <a class="waves-effect waves-teal btn-flat red-text">Esqueceu a senha?</a>
     }
   </div>
 }
