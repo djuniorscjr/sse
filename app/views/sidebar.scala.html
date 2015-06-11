@@ -1,0 +1,39 @@
+@(implicit session : play.mvc.Http.Session, request : play.mvc.Http.Request)
+
+<div class="container">
+  <div class="row">
+    @if(session.get("permissao")) {
+      @if(session.get("permissao").equals("COORDENADOR") || session.get("permissao").equals("PROFESSOR_DISCIPLINA") || session.get("permissao").equals("ADMINISTRADOR")) {
+        <div class="col s3">
+          <ul class="collapsible collapsible-accordion" style="padding-top : 42 px ;">
+            <li class="bold"><a class="collapsible-header  waves-effect waves-teal">Professor</a>
+              <div class="collapsible-body" style="display : none ;">
+                <ul>
+                  <li>
+                    <a href="@routes.ProfessorController.solicitarRegistro()" class="waves-effect waves-teal btn-flat" style="width : 100 %">
+                      Solicitar Registro</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+            <li class="bold"><a class="collapsible-header  waves-effect waves-teal">Aluno</a>
+              <div class="collapsible-body" style="display : none ;">
+                <ul>
+                  <li>
+                    <a href="" class="waves-effect waves-teal btn-flat" style="width : 100 %">
+                      Solicitar Registro</a>
+                  </li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </div>
+      }
+    }
+  <div @if(session.get("permissao")){class="col s9"}>
+    content
+  </div>
+
+  </div>
+
+</div>

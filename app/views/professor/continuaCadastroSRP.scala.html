@@ -2,19 +2,31 @@
 
 @import play.data.DynamicForm
 @import helper._
+@import util.Materialize._
+
 @main("Solicitação Registro Professor") {
+    <div class="form_wrapper-medium">
+        <h3 class="red-text">Cadastro do Professor </h3>
 
     @if(flash.get("error")) {
-        <p style="color : red">@flash.get("error")</p>
+        <p style="color : red" class="center-align">@flash.get("error")</p>
     }
     @if(flash.get("info")) {
-        <p style="color : blue">@flash.get("info")</p>
+        <p style="color : blue" class="center-align">@flash.get("info")</p>
     }else {
         @form(routes.SRPController.salvar(usuario.id)) {
-            email : @usuario.email
-            @inputText(srpForm("nome"))
-            @inputText(srpForm("senha"))
-            <input type="submit" value="Submit" />
+            <div class="element-wrapper">
+                email : @usuario.email
+            </div>
+            <div class="element-wrapper">
+                @inputText(srpForm("nome"))(text, implicitly[Messages])
+            </div>
+            <div class="element-wrapper">
+                @inputText(srpForm("senha"))(password, implicitly[Messages])
+            </div>
+            <button class="btn waves-effect waves-light blue" type="submit" name="action">Cadastrar
+            </button>
         }
     }
+    </div>
 }

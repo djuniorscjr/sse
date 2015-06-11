@@ -1,20 +1,33 @@
 @(professorForm: play.data.Form[Professor])(implicit session : play.mvc.Http.Session,request : play.mvc.Http.Request, flash: play.mvc.Http.Flash)
 
 @import helper._
+@import util.Materialize._
 
 @main("Cadastrar Novo Professores"){
-  @if(professorForm.hasErrors){
-    <p style="color:red">Corrija os erros abaixo!</p>
-  }
-  @if(flash.get("sucesso")){
-    <p style="color:blue">@flash.get("sucesso")</p>
-  }
-  @form(routes.ProfessorController.cria()){
-    @inputText(professorForm("nome"))
-    @inputText(professorForm("usuario.email"))
-    @inputText(professorForm("usuario.senha"))
-    <input type="submit" value="Submit"  />
-  }
+  <div class="form_wrapper-medium">
+    <h3 class="red-text">Cadastro de Professor </h3>
 
+  @form(routes.ProfessorController.cria()){
+    @if(professorForm.hasErrors){
+      <p style="color:red" class="center-align">Corrija os erros abaixo!</p>
+    }
+    @if(flash.get("sucesso")){
+      <p style="color:blue" class="center-align">@flash.get("sucesso")</p>
+    }
+    <div class="element-wrapper">
+      @inputText(professorForm("nome"), '_label -> "Nome")(text, implicitly[Messages])
+    </div>
+    <div class="element-wrapper">
+      @inputText(professorForm("usuario.email"), '_label -> "Email")(text, implicitly[Messages])
+    </div>
+    <div class="element-wrapper">
+      @inputText(professorForm("usuario.senha"), '_label -> "Senha")(password, implicitly[Messages])
+    </div>
+
+    <button class="btn waves-effect waves-light blue" type="submit" name="action">Cadastrar
+    </button>
+    <a class="waves-effect waves-teal btn-flat" href="@routes.ProfessorController.novo()">Novo Professor</a>
+  }
+  </div>
 }
 

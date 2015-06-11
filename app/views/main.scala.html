@@ -4,7 +4,7 @@
 
 <html lang="pt">
     <head>
-        <title>@title</title>
+        <title>SSE</title>
         <meta charset="UTF-8"/>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
@@ -17,25 +17,73 @@
         <nav class="top-nav red">
             <div class="container">
                 <div class="nav-wrapper">
-                    <a class="page-title">Sistema de Supervisão de Estágio</a>
+                    <a class="page-title" href="@routes.Application.index()">Sistema de Supervisão de Estágio</a>
                     <ul class="right hide-on-med-and-down">
-                        @if(!request.uri().equals("/")) {
+                        @if(!request.uri().equals("/") && !session.get("email")) {
                             <li><a href="@routes.Application.index()">Voltar</a></li>
                         }else{
-                            <li><a href="@routes.Application.login()">Entrar</a></li>
+                            @if(session.get("email")){
+                                <li><a href="@routes.UsuarioController.editar()">@session.get("email")</a></li>
+                                <li><a href="@routes.Application.logout()">Sair</a></li>
+                            }else {
+                                <li><a href="@routes.Application.login()">Entrar</a></li>
+                            }
                         }
+
+
                     </ul>
+
                 </div>
 
             </div>
         </nav>
+        @if(!request.uri().equals("/")) {
+            <div class="container">
+                <div class="row">
+                    @if(session.get("permissao")) {
+                        @if(session.get("permissao").equals("COORDENADOR") || session.get("permissao").equals("PROFESSOR_DISCIPLINA") || session.get("permissao").equals("ADMINISTRADOR")) {
+                            <div class="col s3">
+                                <ul class="collapsible collapsible-accordion">
+                                    <li class="bold"><a class="collapsible-header  waves-effect waves-teal">Professor</a>
+                                        <div class="collapsible-body" style="display : none ;">
+                                            <ul>
+                                                <li>
+                                                    <a href="@routes.ProfessorController.novo()" class="waves-effect waves-teal btn-flat" style="width : 100 %">
+                                                        Cadastro</a>
+                                                </li>
+                                                <li class="divider"></li>
+                                                <li>
+                                                    <a href="@routes.ProfessorController.solicitarRegistro()" class="waves-effect waves-teal btn-flat" style="width : 100 %">
+                                                        Solicitar Registro</a>
+                                                </li>
 
-        <div class="@if(!request.uri().equals("/")) {container}">
+                                            </ul>
+                                        </div>
+                                    </li>
+                                    <li class="bold"><a class="collapsible-header  waves-effect waves-teal">Aluno</a>
+                                        <div class="collapsible-body" style="display : none ;">
+                                            <ul>
+                                                <li>
+                                                    <a href="" class="waves-effect waves-teal btn-flat" style="width : 100 %">
+                                                        Consultar</a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </div>
+                        }
+                    }
+                    <div @if(session.get("permissao")){class="col s9"}>
+                            @content
+                    </div>
 
+                </div>
 
+            </div>
+        }else{
             @content
-        </div>
-
+        }
         <script src="@routes.Assets.versioned("javascripts/scripts.min.js")" type="text/javascript"></script>
         <script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
     </body>

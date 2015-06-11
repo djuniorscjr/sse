@@ -48,8 +48,7 @@ public class Application extends Controller {
         session().put("p", crypto.encryptAES(usuario.permissao.name(), Play.application().configuration().getString("play.crypto.secret")));
         session().put("u", crypto.encryptAES(usuario.id.toString(), Play.application().configuration().getString("play.crypto.secret")));
 
-        flash("sucesso", "Você conseguiu logar!");
-        return redirect(routes.Application.login());
+        return redirect(routes.Application.index());
     }
 
     public Result logout(){

@@ -2,7 +2,7 @@
 
 @import views.html.helper.FieldElements
 
-<input type="text" id="@elements.field.id" name="@elements.field.name" value="@elements.field.value.getOrElse("")" class="@if(!elements.field.hasErrors) {validate}else{invalid}" required>
+<textarea id="@elements.field.id" name="@elements.field.name" class="materialize-textarea @if(elements.field.hasErrors){invalid}">@elements.field.value.getOrElse("")</textarea>
 <label for="@elements.field.id">@elements.args.get('_label)</label>
 @if(elements.field.hasErrors) {
     <span class="small">

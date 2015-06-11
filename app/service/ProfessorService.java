@@ -38,7 +38,7 @@ public class ProfessorService {
     public Professor salvar(Professor professor){
         professor.usuario.ativo = false;
         professor.usuario.dataDeCadastro = DateTime.now();
-        professor.usuario.permissao = Permissao.PROFESSOR_DISCIPLINA;
+        professor.usuario.permissao = Permissao.PROFESSOR_ORIENTADOR;
         Crypto crypto = Play.application().injector().instanceOf(Crypto.class);
         professor.usuario.senha = Crypt.sha1(professor.usuario.senha);
         professor.usuario.token = crypto.generateToken();
