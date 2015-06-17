@@ -25,7 +25,7 @@ public class Email {
         MandrillMessage message = new MandrillMessage();
         message.setSubject(titulo);
         message.setHtml(file);
-        message.setAutoText(true);
+        message.setAutoHtml(true);
         message.setFromEmail("sse@hotmail.com");
         message.setFromName("Sistema Supervisão de Estágio");
         message.setTo(recipients);

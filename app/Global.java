@@ -25,6 +25,7 @@ public class Global extends GlobalSettings {
 
     @Override
     public F.Promise<Result> onError(Http.RequestHeader var1, Throwable var2){
+        System.out.println(var2.getMessage());
         return F.Promise.<Result>pure(Results.internalServerError(error.render("Página não encontrada")));
     }
 }   

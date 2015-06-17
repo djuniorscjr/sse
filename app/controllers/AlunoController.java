@@ -43,4 +43,5 @@ public class AlunoController extends Controller {
         return redirect(routes.AlunoController.novo());
     }
 
+
 }

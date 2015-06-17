@@ -1,5 +1,6 @@
 @(title: String)(content: Html)(implicit session : play.mvc.Http.Session, request : play.mvc.Http.Request)
 
+
 <!DOCTYPE html>
 
 <html lang="pt">
@@ -9,6 +10,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/styles.min.css")">
+        <link rel='stylesheet' href='@routes.WebJarAssets.at(WebJarAssets.locate("css/dataTables.responsive.css"))'>
         <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/main.css")">
 
         <link rel="shortcut icon" type="image/png" href="@routes.Assets.versioned("images/favicon.png")">
@@ -84,7 +86,9 @@
         }else{
             @content
         }
+        @common.footer("ae")
         <script src="@routes.Assets.versioned("javascripts/scripts.min.js")" type="text/javascript"></script>
+        <script type='text/javascript' src='@routes.WebJarAssets.at(WebJarAssets.locate("jquery.dataTables.min.js"))'></script>
         <script src="@routes.Assets.versioned("javascripts/hello.js")" type="text/javascript"></script>
     </body>
 </html>

@@ -1,0 +1,23 @@
+@(formUsuario: DynamicForm)(implicit session : play.mvc.Http.Session,request : play.mvc.Http.Request, flash: play.mvc.Http.Flash)
+
+@import play.data.DynamicForm
+@import helper._
+@import util.Materialize._
+
+@main("Editar Usuario") {
+  <div class="form_wrapper-medium">
+    <h3 class="red-text">Esqueceu Senha </h3>
+    @form(routes.UsuarioController.alterarSenha()) {
+      @if(flash.get("error")) {
+        <p style="color : red" class="center-align">@flash.get("error")</p>
+      }
+      @if(flash.get("sucesso")) {
+        <p style="color : blue" class="center-align">@flash.get("sucesso")</p>
+      }
+      <div class="element-wrapper">
+        @inputText(formUsuario("email"),'_label -> "Email")(text, implicitly[Messages])
+      </div>
+      <button class="btn waves-effect waves-light blue" type="submit" name="action">Enviar </button>
+    }
+  </div>
+}

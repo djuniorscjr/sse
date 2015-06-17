@@ -20,6 +20,8 @@ import play.mvc.Result;
 import play.mvc.Security;
 import service.ProfessorService;
 import util.RegraDeNegocioException;
+import views.html.professor.novo;
+import views.html.professor.solicitarRegistro;
 
 import java.io.IOException;
 
@@ -38,13 +40,13 @@ public class ProfessorController extends Controller {
 
 
     public Result novo(){
-        return ok(views.html.professor.novo.render(professorForm,session(),request(),flash()));
+        return ok(novo.render(professorForm,session(),request(),flash()));
     }
 
     public Result cria(){
         Form<Professor> professor = Form.form(Professor.class).bindFromRequest();
         if(professor.hasErrors()){
-            return badRequest(views.html.professor.novo.render(professor,session(),request(),flash()));
+            return badRequest(novo.render(professor, session(), request(), flash()));
         }else{
             professorService.salvar(professor.get());
             flash("sucesso", "Professor cadastrado com sucesso!");
@@ -53,9 +55,9 @@ public class ProfessorController extends Controller {
         return redirect(routes.ProfessorController.novo());
     }
 
-    public F.Promise<Result> solicitarRegistro(){
+    public Result solicitarRegistro(){
         flash("sucesso", Messages.get("infor.new.srp"));
-        return F.Promise.promise(() -> ok(views.html.professor.solicitarRegistro.render(srpForm, session(),request(), flash())));
+        return ok(solicitarRegistro.render(srpForm, session(), request(), flash()));
     }
 
     public F.Promise<Result> enviarSolicitacaoRegistro(){
@@ -66,13 +68,13 @@ public class ProfessorController extends Controller {
             professorService.enviarSolicitacaoRegistro(emails);
         }catch (RegraDeNegocioException e){
             flash("error", e.getMessage());
-            return F.Promise.promise(() -> badRequest(views.html.professor.solicitarRegistro.render(form, session(),request(), flash())));
+            return F.Promise.promise(() -> badRequest(solicitarRegistro.render(form, session(),request(), flash())));
         } catch (IOException e) {
             e.printStackTrace();
             flash("error", Messages.get("error.technical"));
         }
         flash("sucesso", "Operação realizada com sucesso!");
-        return F.Promise.promise(() -> ok(views.html.professor.solicitarRegistro.render(srpForm, session(),request(), flash())));
+        return F.Promise.promise(() -> ok(solicitarRegistro.render(srpForm, session(), request(), flash())));
     }
 
 }
