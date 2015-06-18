@@ -1,0 +1,23 @@
+@(implicit session : play.mvc.Http.Session, request : play.mvc.Http.Request)
+<nav class="top-nav red">
+  <div class="container">
+    <div class="nav-wrapper">
+      <a class="page-title" href="@routes.Application.index()">Sistema de Supervisão de Estágio</a>
+      <ul class="right hide-on-med-and-down">
+      @if(!request.uri().equals("/") && !session.get("email")) {
+        <li><a href="@routes.Application.index()">Voltar</a></li>
+      }else{
+        @if(session.get("email")){
+          @if(request.uri().equals("/") || request.uri().equals("/aluno") || request.uri().equals("/login")) {
+            <li><a href="@routes.Application.admin()" class="blue">Administrador</a></li>
+          }
+          <li><a href="@routes.UsuarioController.editar()">@session.get("email")</a></li>
+          <li><a href="@routes.Application.logout()">Sair</a></li>
+        }else {
+          <li><a href="@routes.Application.login()">Entrar</a></li>
+        }
+      }
+      </ul>
+    </div>
+  </div>
+</nav>

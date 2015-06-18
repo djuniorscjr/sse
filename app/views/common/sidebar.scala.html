@@ -1,0 +1,29 @@
+@(implicit session : play.mvc.Http.Session, request : play.mvc.Http.Request)
+<ul class="collapsible collapsible-accordion sidebar">
+  <li class="bold"><a class="collapsible-header  waves-effect waves-teal">Professor</a>
+    <div class="collapsible-body" style="display : none ;">
+      <ul>
+        <li>
+          <a href="@routes.ProfessorController.novo()" class="waves-effect waves-teal btn-flat botao">
+                          Cadastro</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+          <a href="@routes.ProfessorController.solicitarRegistro()" class="waves-effect waves-teal btn-flat botao">
+                          Solicitar Registro</a>
+        </li>
+
+      </ul>
+    </div>
+  </li>
+  <li class="bold"><a class="collapsible-header  waves-effect waves-teal botao">Aluno</a>
+    <div class="collapsible-body" style="display:none;">
+      <ul>
+        <li>
+          <a href="" class="waves-effect waves-teal btn-flat botao">
+                          Consultar</a>
+        </li>
+      </ul>
+    </div>
+  </li>
+</ul>

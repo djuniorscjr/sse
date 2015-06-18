@@ -1,12 +1,10 @@
-@(message: String)(implicit session : play.mvc.Http.Session,request : play.mvc.Http.Request)
-@main("Welcome to Play") {
+@(implicit session : play.mvc.Http.Session,request : play.mvc.Http.Request)
+@main("SSE") {
     <div class="intro red z-depth-1">
         <h1 class="grey-text text-lighten-5">SSE</h1>
-        <p>
             <h5 clas="grey lighten-4 grey-text text-darken-1">
-                Faça seu cadastro <i class="medium mdi-navigation-arrow-forward green-text"></i>
-                <a class="waves-effect waves-light btn blue" href="@routes.AlunoController.novo()">Cadastro do Aluno</a>
+                Aluno faça seu cadastro <i class="mdi-navigation-arrow-forward green-text"></i>
+                    <a class="waves-effect waves-light btn blue" href="@routes.AlunoController.novo()">Cadastro</a>
             </h5>
-        </p>
     </div>
 }

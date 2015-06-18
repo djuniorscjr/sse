@@ -21,7 +21,12 @@ public class Application extends Controller {
     private DynamicForm loginForm = Form.form();
 
     public Result index() {
-        return ok(index.render("Your new application is ready.",session(),request()));
+        return ok(index.render(session(),request()));
+    }
+
+    @Security.Authenticated(AutenticacaoSegura.class)
+    public Result admin() {
+        return ok(admin.render(session(),request()));
     }
 
     public Result login(){

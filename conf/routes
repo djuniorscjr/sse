@@ -4,6 +4,7 @@
 
 # Home page
 GET         /                                   @controllers.Application.index()
+GET         /dashboard                          @controllers.Application.admin()
 
 GET         /aluno                              @controllers.AlunoController.novo()
 POST        /aluno                              @controllers.AlunoController.cria()
