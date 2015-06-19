@@ -27,7 +27,9 @@ GET         /editar                             @controllers.UsuarioController.e
 POST        /edicao                             @controllers.UsuarioController.edicao()
 
 GET         /usuario                            @controllers.UsuarioController.esqueceuSenha()
-POST        /usuario/alterarSenha               @controllers.UsuarioController.alterarSenha()
+POST        /usuario/alterarSenha               @controllers.UsuarioController.enviandoEmailSenha()
+GET         /usuario/senha/:token               @controllers.UsuarioController.alterarSenha(token: String)
+POST        /usuario/alterandoSenha             @controllers.UsuarioController.alterandoSenha()
 
 GET         /aluno/consulta                     @controllers.UsuarioController.consulta()
 # Map static resources from the /public folder to the /assets URL path

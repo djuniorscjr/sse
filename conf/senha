@@ -1,45 +1,36 @@
-
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
+    	<!-- NAME: 1 COLUMN - BANDED -->
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-        <meta name="viewport" content="width=device-width">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>*|MC:SUBJECT|*</title>
-		
 
-
-        <!-- ////// OUTLOOK-SPECIFIC STYLES ///// -->
-        <!--[if gte mso 7]>
-        <style type="text/css">
-        </style>
-        <![endif]-->
     <style type="text/css">
-		p{
-			margin:1em 0;
-		}
-		a{
-			word-wrap:break-word;
-		}
-		table{
-			border-collapse:collapse;
-			table-layout:fixed;
-		}
-		img,a img{
-			border:0;
-			outline:none;
-			text-decoration:none;
-		}
 		body,#bodyTable,#bodyCell{
 			height:100% !important;
 			margin:0;
 			padding:0;
 			width:100% !important;
 		}
+		table{
+			border-collapse:collapse;
+		}
+		img,a img{
+			border:0;
+			outline:none;
+			text-decoration:none;
+		}
 		h1,h2,h3,h4,h5,h6{
-			display:block;
 			margin:0;
 			padding:0;
+		}
+		p{
+			margin:1em 0;
+			padding:0;
+		}
+		a{
+			word-wrap:break-word;
 		}
 		.ReadMsgBody{
 			width:100%;
@@ -47,10 +38,10 @@
 		.ExternalClass{
 			width:100%;
 		}
-		.ExternalClass,.ExternalClass p,.ExternalClass td,.ExternalClass div,.ExternalClass span,.ExternalClass font{
+		.ExternalClass,.ExternalClass p,.ExternalClass span,.ExternalClass font,.ExternalClass td,.ExternalClass div{
 			line-height:100%;
 		}
-		td,table{
+		table,td{
 			mso-table-lspace:0pt;
 			mso-table-rspace:0pt;
 		}
@@ -60,18 +51,18 @@
 		img{
 			-ms-interpolation-mode:bicubic;
 		}
-		p,a,li,td,body,table,blockquote{
+		body,table,td,p,a,li,blockquote{
 			-ms-text-size-adjust:100%;
 			-webkit-text-size-adjust:100%;
+		}
+		#bodyCell{
+			padding:0;
 		}
 		.mcnImage{
 			vertical-align:bottom;
 		}
 		.mcnTextContent img{
 			height:auto !important;
-		}
-		a.mcnButton{
-			display:block;
 		}
 	/*
 	@tab Page
@@ -87,7 +78,7 @@
 	@tip Set the background color and top border for your email. You may want to choose colors that match your company's branding.
 	*/
 		#bodyCell{
-			/*@editable*/border-top:5px solid #FFFFFF;
+			/*@editable*/border-top:0;
 		}
 	/*
 	@tab Page
@@ -96,13 +87,15 @@
 	@style heading 1
 	*/
 		h1{
-			/*@editable*/color:#FFFFFF !important;
+			/*@editable*/color:#606060 !important;
+			display:block;
 			/*@editable*/font-family:Helvetica;
-			/*@editable*/font-size:26px;
+			/*@editable*/font-size:40px;
 			/*@editable*/font-style:normal;
 			/*@editable*/font-weight:bold;
 			/*@editable*/line-height:125%;
-			/*@editable*/letter-spacing:normal;
+			/*@editable*/letter-spacing:-1px;
+			margin:0;
 			/*@editable*/text-align:left;
 		}
 	/*
@@ -112,13 +105,15 @@
 	@style heading 2
 	*/
 		h2{
-			/*@editable*/color:#FFFFFF !important;
+			/*@editable*/color:#404040 !important;
+			display:block;
 			/*@editable*/font-family:Helvetica;
-			/*@editable*/font-size:22px;
+			/*@editable*/font-size:26px;
 			/*@editable*/font-style:normal;
 			/*@editable*/font-weight:bold;
 			/*@editable*/line-height:125%;
-			/*@editable*/letter-spacing:normal;
+			/*@editable*/letter-spacing:-.75px;
+			margin:0;
 			/*@editable*/text-align:left;
 		}
 	/*
@@ -128,13 +123,15 @@
 	@style heading 3
 	*/
 		h3{
-			/*@editable*/color:#D55258 !important;
+			/*@editable*/color:#606060 !important;
+			display:block;
 			/*@editable*/font-family:Helvetica;
 			/*@editable*/font-size:18px;
 			/*@editable*/font-style:normal;
 			/*@editable*/font-weight:bold;
 			/*@editable*/line-height:125%;
-			/*@editable*/letter-spacing:normal;
+			/*@editable*/letter-spacing:-.5px;
+			margin:0;
 			/*@editable*/text-align:left;
 		}
 	/*
@@ -144,13 +141,15 @@
 	@style heading 4
 	*/
 		h4{
-			/*@editable*/color:#D55258 !important;
+			/*@editable*/color:#808080 !important;
+			display:block;
 			/*@editable*/font-family:Helvetica;
 			/*@editable*/font-size:16px;
 			/*@editable*/font-style:normal;
 			/*@editable*/font-weight:bold;
 			/*@editable*/line-height:125%;
 			/*@editable*/letter-spacing:normal;
+			margin:0;
 			/*@editable*/text-align:left;
 		}
 	/*
@@ -159,7 +158,7 @@
 	@tip Set the background color and borders for your email's preheader area.
 	*/
 		#templatePreheader{
-			/*@editable*/background-color:#F2F2F2;
+			/*@editable*/background-color:#FFFFFF;
 			/*@editable*/border-top:0;
 			/*@editable*/border-bottom:0;
 		}
@@ -169,9 +168,9 @@
 	@tip Set the styling for your email's preheader text. Choose a size and color that is easy to read.
 	*/
 		.preheaderContainer .mcnTextContent,.preheaderContainer .mcnTextContent p{
-			/*@editable*/color:#404040;
+			/*@editable*/color:#606060;
 			/*@editable*/font-family:Helvetica;
-			/*@editable*/font-size:12px;
+			/*@editable*/font-size:11px;
 			/*@editable*/line-height:125%;
 			/*@editable*/text-align:left;
 		}
@@ -181,7 +180,7 @@
 	@tip Set the styling for your email's header links. Choose a color that helps them stand out from your text.
 	*/
 		.preheaderContainer .mcnTextContent a{
-			/*@editable*/color:#404040;
+			/*@editable*/color:#606060;
 			/*@editable*/font-weight:normal;
 			/*@editable*/text-decoration:underline;
 		}
@@ -191,25 +190,9 @@
 	@tip Set the background color and borders for your email's header area.
 	*/
 		#templateHeader{
-			/*@editable*/background-color:#F2F2F2;
+			/*@editable*/background-color:#FFFFFF;
 			/*@editable*/border-top:0;
 			/*@editable*/border-bottom:0;
-		}
-	/*
-	@tab Header
-	@section header container
-	@tip Set the background color and bottom border for your email's header text container.
-	*/
-		.headerFrontBackground,.headerRearBackground{
-			/*@editable*/background-color:#D55258;
-		}
-	/*
-	@tab Header
-	@section header container
-	@tip Set the background color and bottom border for your email's header text container.
-	*/
-		.headerFrontBackground{
-			/*@editable*/border-bottom:2px solid #BD4046;
 		}
 	/*
 	@tab Header
@@ -217,9 +200,9 @@
 	@tip Set the styling for your email's header text. Choose a size and color that is easy to read.
 	*/
 		.headerContainer .mcnTextContent,.headerContainer .mcnTextContent p{
-			/*@editable*/color:#FFFFFF;
+			/*@editable*/color:#606060;
 			/*@editable*/font-family:Helvetica;
-			/*@editable*/font-size:16px;
+			/*@editable*/font-size:15px;
 			/*@editable*/line-height:150%;
 			/*@editable*/text-align:left;
 		}
@@ -229,7 +212,7 @@
 	@tip Set the styling for your email's header links. Choose a color that helps them stand out from your text.
 	*/
 		.headerContainer .mcnTextContent a{
-			/*@editable*/color:#FFFFFF;
+			/*@editable*/color:#6DC6DD;
 			/*@editable*/font-weight:normal;
 			/*@editable*/text-decoration:underline;
 		}
@@ -239,7 +222,7 @@
 	@tip Set the background color and borders for your email's body area.
 	*/
 		#templateBody{
-			/*@editable*/background-color:#F2F2F2;
+			/*@editable*/background-color:#FFFFFF;
 			/*@editable*/border-top:0;
 			/*@editable*/border-bottom:0;
 		}
@@ -251,7 +234,7 @@
 		.bodyContainer .mcnTextContent,.bodyContainer .mcnTextContent p{
 			/*@editable*/color:#606060;
 			/*@editable*/font-family:Helvetica;
-			/*@editable*/font-size:14px;
+			/*@editable*/font-size:15px;
 			/*@editable*/line-height:150%;
 			/*@editable*/text-align:left;
 		}
@@ -261,7 +244,7 @@
 	@tip Set the styling for your email's body links. Choose a color that helps them stand out from your text.
 	*/
 		.bodyContainer .mcnTextContent a{
-			/*@editable*/color:#D55258;
+			/*@editable*/color:#6DC6DD;
 			/*@editable*/font-weight:normal;
 			/*@editable*/text-decoration:underline;
 		}
@@ -281,11 +264,11 @@
 	@tip Set the styling for your email's footer text. Choose a size and color that is easy to read.
 	*/
 		.footerContainer .mcnTextContent,.footerContainer .mcnTextContent p{
-			/*@editable*/color:#AAAAAA;
+			/*@editable*/color:#606060;
 			/*@editable*/font-family:Helvetica;
-			/*@editable*/font-size:10px;
+			/*@editable*/font-size:11px;
 			/*@editable*/line-height:125%;
-			/*@editable*/text-align:center;
+			/*@editable*/text-align:left;
 		}
 	/*
 	@tab Footer
@@ -293,18 +276,44 @@
 	@tip Set the styling for your email's footer links. Choose a color that helps them stand out from your text.
 	*/
 		.footerContainer .mcnTextContent a{
-			/*@editable*/color:#AAAAAA;
+			/*@editable*/color:#606060;
 			/*@editable*/font-weight:normal;
 			/*@editable*/text-decoration:underline;
 		}
 	@media only screen and (max-width: 480px){
+		body,table,td,p,a,li,blockquote{
+			-webkit-text-size-adjust:none !important;
+		}
+
+}	@media only screen and (max-width: 480px){
 		body{
 			width:100% !important;
 			min-width:100% !important;
 		}
 
 }	@media only screen and (max-width: 480px){
-		img[class=mcnImage],table[class=mcnShareContent],table[class=mcnCaptionTopContent],table[class=mcnCaptionBottomContent],table[class=mcnTextContentContainer],table[class=mcnBoxedTextContentContainer],table[class=mcnImageGroupContentContainer],table[class=mcnCaptionLeftTextContentContainer],table[class=mcnCaptionRightTextContentContainer],table[class=mcnCaptionLeftImageContentContainer],table[class=mcnCaptionRightImageContentContainer],table[class=mcnImageCardLeftTextContentContainer],table[class=mcnImageCardRightTextContentContainer]{
+		table[class=mcnTextContentContainer]{
+			width:100% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		table[class=mcnBoxedTextContentContainer]{
+			width:100% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		table[class=mcpreview-image-uploader]{
+			width:100% !important;
+			display:none !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		img[class=mcnImage]{
+			width:100% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		table[class=mcnImageGroupContentContainer]{
 			width:100% !important;
 		}
 
@@ -314,13 +323,32 @@
 		}
 
 }	@media only screen and (max-width: 480px){
-		table[class=mcnCaptionLeftContentOuter] td[class=mcnTextContent],table[class=mcnCaptionRightContentOuter] td[class=mcnTextContent]{
+		td[class=mcnImageGroupBlockInner]{
+			padding-bottom:0 !important;
+			padding-top:0 !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		tbody[class=mcnImageGroupBlockOuter]{
+			padding-bottom:9px !important;
 			padding-top:9px !important;
 		}
 
 }	@media only screen and (max-width: 480px){
-		td[class=mcnImageCardTopImageContent],td[class=mcnCaptionBlockInner] table[class=mcnCaptionTopContent]:last-child td[class=mcnTextContent]{
-			padding-top:18px !important;
+		table[class=mcnCaptionTopContent],table[class=mcnCaptionBottomContent]{
+			width:100% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		table[class=mcnCaptionLeftTextContentContainer],table[class=mcnCaptionRightTextContentContainer],table[class=mcnCaptionLeftImageContentContainer],table[class=mcnCaptionRightImageContentContainer],table[class=mcnImageCardLeftTextContentContainer],table[class=mcnImageCardRightTextContentContainer]{
+			width:100% !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		td[class=mcnImageCardLeftImageContent],td[class=mcnImageCardRightImageContent]{
+			padding-right:18px !important;
+			padding-left:18px !important;
+			padding-bottom:0 !important;
 		}
 
 }	@media only screen and (max-width: 480px){
@@ -329,46 +357,47 @@
 		}
 
 }	@media only screen and (max-width: 480px){
-		td[class=mcnImageGroupBlockInner]{
-			padding-top:0 !important;
-			padding-bottom:0 !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		tbody[class=mcnImageGroupBlockOuter]{
-			padding-top:9px !important;
-			padding-bottom:9px !important;
-		}
-
-}	@media only screen and (max-width: 480px){
-		td[class=mcnTextContent],td[class=mcnBoxedTextContentColumn]{
-			padding-right:18px !important;
-			padding-left:18px !important;
+		td[class=mcnImageCardTopImageContent]{
+			padding-top:18px !important;
 		}
 
 }	@media only screen and (max-width: 480px){
 		td[class=mcnImageCardLeftImageContent],td[class=mcnImageCardRightImageContent]{
 			padding-right:18px !important;
-			padding-bottom:0 !important;
 			padding-left:18px !important;
+			padding-bottom:0 !important;
 		}
 
 }	@media only screen and (max-width: 480px){
-		td[class=columnsContainer]{
-			display:block !important;
-			max-width:600px !important;
-			width:100% !important;
+		td[class=mcnImageCardBottomImageContent]{
+			padding-bottom:9px !important;
 		}
 
 }	@media only screen and (max-width: 480px){
-		table[class=mcpreview-image-uploader]{
-			display:none !important;
-			width:100% !important;
+		td[class=mcnImageCardTopImageContent]{
+			padding-top:18px !important;
 		}
 
 }	@media only screen and (max-width: 480px){
-		td[class=footerContainer] a[class=utilityLink]{
-			display:block !important;
+		table[class=mcnCaptionLeftContentOuter] td[class=mcnTextContent],table[class=mcnCaptionRightContentOuter] td[class=mcnTextContent]{
+			padding-top:9px !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		td[class=mcnCaptionBlockInner] table[class=mcnCaptionTopContent]:last-child td[class=mcnTextContent]{
+			padding-top:18px !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		td[class=mcnBoxedTextContentColumn]{
+			padding-left:18px !important;
+			padding-right:18px !important;
+		}
+
+}	@media only screen and (max-width: 480px){
+		td[class=mcnTextContent]{
+			padding-right:18px !important;
+			padding-left:18px !important;
 		}
 
 }	@media only screen and (max-width: 480px){
@@ -377,7 +406,7 @@
 	@section template width
 	@tip Make the template fluid for portrait or landscape view adaptability. If a fluid layout doesn't work for you, set the width to 300px instead.
 	*/
-		table[class=templateContainer],table[id=templateColumns],table[class=templateColumn]{
+		table[class=templateContainer]{
 			/*@tab Mobile Styles
 @section template width
 @tip Make the template fluid for portrait or landscape view adaptability. If a fluid layout doesn't work for you, set the width to 300px instead.*/max-width:600px !important;
@@ -493,12 +522,17 @@
 			/*@editable*/line-height:115% !important;
 		}
 
+}	@media only screen and (max-width: 480px){
+		td[class=footerContainer] a[class=utilityLink]{
+			display:block !important;
+		}
+
 }</style></head>
-    <body>
-    	<center>
-        	<table border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable">
-            	<tr>
-                	<td align="center" valign="top" id="bodyCell">
+    <body leftmargin="0" marginwidth="0" topmargin="0" marginheight="0" offset="0">
+        <center>
+            <table align="center" border="0" cellpadding="0" cellspacing="0" height="100%" width="100%" id="bodyTable">
+                <tr>
+                    <td align="center" valign="top" id="bodyCell">
                         <!-- BEGIN TEMPLATE // -->
                         <table border="0" cellpadding="0" cellspacing="0" width="100%">
                             <tr>
@@ -509,124 +543,32 @@
                                         	<td align="center" valign="top">
                                                 <table border="0" cellpadding="0" cellspacing="0" width="600" class="templateContainer">
                                                     <tr>
-                                                        <td valign="top" class="preheaderContainer" style="padding-top:10px; padding-bottom:10px;"><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnDividerBlock">
-    <tbody class="mcnDividerBlockOuter">
-        <tr>
-            <td class="mcnDividerBlockInner" style="padding: 18px;">
-                <table class="mcnDividerContent" border="0" cellpadding="0" cellspacing="0" width="100%">
-                    <tbody><tr>
-                        <td>
-                            <span></span>
-                        </td>
-                    </tr>
-                </tbody></table>
-            </td>
-        </tr>
-    </tbody>
-</table></td>
+                                                        <td valign="top" class="preheaderContainer" style="padding-top:9px;"></td>
                                                     </tr>
                                                 </table>
-                                            </td>                                            
+                                            </td>
                                         </tr>
                                     </table>
                                     <!-- // END PREHEADER -->
                                 </td>
                             </tr>
                             <tr>
-                            	<td align="center" valign="top">
-									<!-- BEGIN HEADER // -->
-                                	<table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateHeader">
-                                    	<tr>
-                                        	<td align="center" valign="top" style="padding-top:20px; padding-bottom:20px;">
+                                <td align="center" valign="top">
+                                    <!-- BEGIN HEADER // -->
+                                    <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateHeader">
+                                        <tr>
+                                            <td align="center" valign="top">
                                                 <table border="0" cellpadding="0" cellspacing="0" width="600" class="templateContainer">
-													<tr>
-														<td align="center" height="10" valign="top" width="10">
-															<img src="https://gallery.mailchimp.com/27aac8a65e64c994c4416d6b8/images/d4042106-8117-4b79-b76b-91f8d64c5dff.gif" height="10" width="10" style="display:block; line-height:0px;">
-														</td>
-														<td align="center" height="10" valign="top" class="headerRearBackground" style="opacity:0.5;">
-															<img src="https://gallery.mailchimp.com/27aac8a65e64c994c4416d6b8/images/640a7ee0-db88-4905-a550-89e571c94697.png" class="mcnImage" height="10" width="580" style="display:block; line-height:0px;">
-														</td>
-														<td align="center" height="10" valign="top" width="10">
-															<img src="https://gallery.mailchimp.com/27aac8a65e64c994c4416d6b8/images/d4042106-8117-4b79-b76b-91f8d64c5dff.gif" height="10" width="10" style="display:block; line-height:0px;">
-														</td>
-													</tr>
-                                                	<tr>
-                                                    	<td align="center" colspan="3" valign="top">
-                                                        	<table border="0" cellpadding="0" cellspacing="0" width="100%" class="headerFrontBackground">
-                                                                <tr>
-                                                                    <td align="center" valign="top">
-                                                                        <!-- BEGIN HEADER // -->
-                                                                        <table border="0" cellpadding="0" cellspacing="0" width="100%" id="">
-                                                                            <tr>
-                                                                                <td valign="top" class="headerContainer" style="padding-top:20px; padding-bottom:20px;"><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock">
-    <tbody class="mcnTextBlockOuter">
-        <tr>
-            <td valign="top" class="mcnTextBlockInner">
-                
-                <table align="left" border="0" cellpadding="0" cellspacing="0" width="600" class="mcnTextContentContainer">
-                    <tbody><tr>
-                        
-                        <td valign="top" class="mcnTextContent" style="padding-top:9px; padding-right: 18px; padding-bottom: 9px; padding-left: 18px;">
-                        
-                            <h1>Sistema de Supervisão de Estágio</h1>
-
-                        </td>
-                    </tr>
-                </tbody></table>
-                
-            </td>
-        </tr>
-    </tbody>
-</table><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock">
-    <tbody class="mcnTextBlockOuter">
-        <tr>
-            <td valign="top" class="mcnTextBlockInner">
-                
-                <table align="left" border="0" cellpadding="0" cellspacing="0" width="600" class="mcnTextContentContainer">
-                    <tbody><tr>
-                        
-                        <td valign="top" class="mcnTextContent" style="padding-top:9px; padding-right: 18px; padding-bottom: 9px; padding-left: 18px;">
-                        
-                            Você esqueceu a senha, para atualizar sua senha clique aqui abaixo.
-                        </td>
-                    </tr>
-                </tbody></table>
-                
-            </td>
-        </tr>
-    </tbody>
-</table><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonBlock">
-    <tbody class="mcnButtonBlockOuter">
-        <tr>
-            <td style="padding-top:0; padding-right:18px; padding-bottom:18px; padding-left:18px;" valign="top" align="center" class="mcnButtonBlockInner">
-                <table border="0" cellpadding="0" cellspacing="0" class="mcnButtonContentContainer" style="border-collapse: separate !important;border: 2px solid #F2F2F2;border-radius: 4px;background-color: #FFFFFF;">
-                    <tbody>
-                        <tr>
-                            <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Arial; font-size: 16px; padding: 20px;">
-                                <a class="mcnButton " title="Atualizar Senha!" href="#LINK#" target="_blank" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #D55258;">Atualizar Senha!</a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </td>
-        </tr>
-    </tbody>
-</table></td>
-                                                                            </tr>
-                                                                        </table>
-                                                                        <!-- // END HEADER -->
-                                                                    </td>
-                                                                </tr>
-                                                            </table>
-                                                        </td>
+                                                    <tr>
+                                                        <td valign="top" class="headerContainer" style="padding-top:10px; padding-bottom:10px;"></td>
                                                     </tr>
                                                 </table>
-											</td>
-										</tr>
-									</table>
-									<!-- // END HEADER -->
-								</td>
-							</tr>
+                                            </td>
+                                        </tr>
+                                    </table>
+                                    <!-- // END HEADER -->
+                                </td>
+                            </tr>
                             <tr>
                                 <td align="center" valign="top">
                                     <!-- BEGIN BODY // -->
@@ -635,17 +577,43 @@
                                             <td align="center" valign="top">
                                                 <table border="0" cellpadding="0" cellspacing="0" width="600" class="templateContainer">
                                                     <tr>
-                                                        <td valign="top" class="bodyContainer" style="padding-top:10px; padding-bottom:10px;"><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnDividerBlock">
-    <tbody class="mcnDividerBlockOuter">
+                                                        <td valign="top" class="bodyContainer" style="padding-top:10px; padding-bottom:10px;"><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnTextBlock">
+    <tbody class="mcnTextBlockOuter">
         <tr>
-            <td class="mcnDividerBlockInner" style="padding: 18px;">
-                <table class="mcnDividerContent" border="0" cellpadding="0" cellspacing="0" width="100%" style="border-top-width: 1px;border-top-style: solid;border-top-color: #AAAAAA;">
+            <td valign="top" class="mcnTextBlockInner">
+
+                <table align="left" border="0" cellpadding="0" cellspacing="0" width="600" class="mcnTextContentContainer">
                     <tbody><tr>
-                        <td>
-                            <span></span>
+
+                        <td valign="top" class="mcnTextContent" style="padding-top:9px; padding-right: 18px; padding-bottom: 9px; padding-left: 18px;">
+
+                            <h1><span style="font-size:33px">Sistema de SupervisÃ£o de EstÃ¡gio</span></h1>
+
+<h3>VocÃª esqueceu a senha.</h3>
+
+<p>Agora para vocÃª alterar sua senha basta clicar no botÃ£o abaixe.</p>
+
+
                         </td>
                     </tr>
                 </tbody></table>
+
+            </td>
+        </tr>
+    </tbody>
+</table><table border="0" cellpadding="0" cellspacing="0" width="100%" class="mcnButtonBlock">
+    <tbody class="mcnButtonBlockOuter">
+        <tr>
+            <td style="padding-top:0; padding-right:18px; padding-bottom:18px; padding-left:18px;" valign="top" align="center" class="mcnButtonBlockInner">
+                <table border="0" cellpadding="0" cellspacing="0" class="mcnButtonContentContainer" style="border-collapse: separate !important;border: 2px solid #707070;border-radius: 5px;background-color: #42AD42;">
+                    <tbody>
+                        <tr>
+                            <td align="center" valign="middle" class="mcnButtonContent" style="font-family: Arial; font-size: 16px; padding: 16px;">
+                                <a class="mcnButton " title="Alterar!" href="#LINK#" target="_blank" style="font-weight: bold;letter-spacing: normal;line-height: 100%;text-align: center;text-decoration: none;color: #FFFFFF;">Alterar!</a>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
             </td>
         </tr>
     </tbody>
@@ -659,7 +627,7 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td align="center" valign="top" style="padding-bottom:40px;">
+                                <td align="center" valign="top">
                                     <!-- BEGIN FOOTER // -->
                                     <table border="0" cellpadding="0" cellspacing="0" width="100%" id="templateFooter">
                                         <tr>
@@ -670,22 +638,22 @@
     <tbody class="mcnTextBlockOuter">
         <tr>
             <td valign="top" class="mcnTextBlockInner">
-                
+
                 <table align="left" border="0" cellpadding="0" cellspacing="0" width="600" class="mcnTextContentContainer">
                     <tbody><tr>
-                        
+
                         <td valign="top" class="mcnTextContent" style="padding-top:9px; padding-right: 18px; padding-bottom: 9px; padding-left: 18px;">
-                        
-                            <em style="color: #222222;font-family: arial,sans-serif;font-size: 12.8000001907349px;line-height: normal;">Copyright © dom~, All rights reserved.</em><br style="color: #222222;font-family: arial, sans-serif;font-size: 12.8000001907349px;line-height: normal;">
-<br style="color: #222222;font-family: arial, sans-serif;font-size: 12.8000001907349px;line-height: normal;">
-<br style="color: #222222;font-family: arial, sans-serif;font-size: 12.8000001907349px;line-height: normal;">
-<strong style="color: #222222;font-family: arial,sans-serif;font-size: 12.8000001907349px;line-height: normal;">Problemas ou dúvidas:</strong><br style="color: #222222;font-family: arial, sans-serif;font-size: 12.8000001907349px;line-height: normal;">
-<a href="mailto:domdsncjr@gmail.com" style="color: #1155CC;font-family: arial, sans-serif;font-size: 12.8000001907349px;line-height: normal;" target="_blank">domdsncjr@gmail.com</a><br style="color: #222222;font-family: arial, sans-serif;font-size: 12.8000001907349px;line-height: normal;">
-<span style="color: #222222;font-family: arial,sans-serif;font-size: 12.8000001907349px;line-height: normal;">&nbsp;</span>
+
+                            <em>Copyright Â© dom~, All rights reserved.</em><br>
+<br>
+<br>
+<strong>Problemas ou dÃºvidas:</strong><br>
+domdsncjr@gmail.com<br>
+&nbsp;
                         </td>
                     </tr>
                 </tbody></table>
-                
+
             </td>
         </tr>
     </tbody>
@@ -698,8 +666,8 @@
                                     <!-- // END FOOTER -->
                                 </td>
                             </tr>
-						</table>
-						<!-- // END TEMPLATE -->
+                        </table>
+                        <!-- // END TEMPLATE -->
                     </td>
                 </tr>
             </table>

@@ -7,7 +7,7 @@
 @main("Editar Usuario") {
   <div class="form_wrapper-medium">
     <h3 class="red-text">Esqueceu Senha </h3>
-    @form(routes.UsuarioController.alterarSenha()) {
+    @form(routes.UsuarioController.enviandoEmailSenha()) {
       @if(flash.get("error")) {
         <p style="color : red" class="center-align">@flash.get("error")</p>
       }

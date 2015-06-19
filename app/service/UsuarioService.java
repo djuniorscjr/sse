@@ -71,7 +71,6 @@ public class UsuarioService {
     }
 
     private void validaAtualizacao(Usuario usuario, String confirmaSenha, String email) throws RegraDeNegocioException {
-        System.out.println(email);
         Pattern regex = java.util.regex.Pattern.compile("\\b[a-zA-Z0-9.!#$%&\'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*\\b");
         if(usuario.email.isEmpty() || usuario.senha.isEmpty() || usuario.email.trim().isEmpty() || usuario.senha.trim().isEmpty()){
             throw new RegraDeNegocioException(Messages.get("error.all.required"));
@@ -112,5 +111,14 @@ public class UsuarioService {
         readArquivo = readArquivo.replace("#LINK#", "http://localhost:9000/usuario/senha/" + token);
         Email email = new Email(readArquivo, "[SSE] Solicitação de Nova Senha", recipients);
         email.enviaEmail();
+    }
+
+    public void alterarSenha(String email, String senha, String confirmarSenha) throws RegraDeNegocioException {
+        if(!senha.equals(confirmarSenha)){
+            throw new RegraDeNegocioException(Messages.get("error.confirmation.password"));
+        }
+        Usuario usuario = this.retornUsuarioPorEmail(email);
+        usuario.senha = Crypt.sha1(senha);
+        usuarioRepository.editar(Usuario.class, usuario);
     }
 }
