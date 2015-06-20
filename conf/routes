@@ -31,7 +31,11 @@ POST        /usuario/alterarSenha               @controllers.UsuarioController.e
 GET         /usuario/senha/:token               @controllers.UsuarioController.alterarSenha(token: String)
 POST        /usuario/alterandoSenha             @controllers.UsuarioController.alterandoSenha()
 
-GET         /aluno/consulta                     @controllers.UsuarioController.consulta()
+GET         /aluno/consulta                     @controllers.ConsultarUsuarioController.consulta()
+
+GET         /aluno/ativa                        @controllers.ConsultarUsuarioController.ativaAluno(id: Long)
+GET         /aluno/bloquea                      @controllers.ConsultarUsuarioController.bloquearAluno(id: Long)
+
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file                       controllers.Assets.versioned(path="/public", file: Asset)
 GET         /webjars/*file                      controllers.WebJarAssets.at(file)

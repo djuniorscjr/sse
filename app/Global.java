@@ -3,6 +3,7 @@ import com.google.inject.Injector;
 import module.GlobalModule;
 import play.Application;
 import play.GlobalSettings;
+import play.api.mvc.EssentialFilter;
 import play.libs.F;
 import play.mvc.Http;
 import play.mvc.Result;
@@ -28,4 +29,5 @@ public class Global extends GlobalSettings {
         System.out.println(var2.getMessage());
         return F.Promise.<Result>pure(Results.internalServerError(error.render("Página não encontrada")));
     }
-}   
+
+}

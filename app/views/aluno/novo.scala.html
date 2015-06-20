@@ -13,6 +13,7 @@
     @if(flash.get("sucesso")){
       <p style="color:blue" class="center-align">@flash.get("sucesso")</p>
     }
+    @CSRF.formField
     <div class="element-wrapper">
       @helper.inputText(alunoForm("nome"), '_label -> "Nome")(text, implicitly[Messages])
     </div>

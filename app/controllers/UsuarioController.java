@@ -93,12 +93,6 @@ public class UsuarioController extends Controller {
         return F.Promise.promise(() -> redirect(routes.UsuarioController.esqueceuSenha()));
     }
 
-    @Security.Authenticated(AutenticacaoSegura.class)
-    @Controle({Permissao.ADMINISTRADOR, Permissao.COORDENADOR,Permissao.PROFESSOR_DISCIPLINA})
-    public Result consulta(){
-        return ok(consulta.render(session(), request(), flash()));
-    }
-
     public Result alterarSenha(String token){
         Usuario usuario = usuarioService.retornaUsuarioPorToken(token);
         if(usuario == null){

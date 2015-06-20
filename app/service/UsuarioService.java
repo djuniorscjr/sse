@@ -27,6 +27,8 @@ public class UsuarioService {
 
     @Inject
     private UsuarioRepository usuarioRepository;
+    @Inject
+    private Crypto crypto;
 
     public Usuario autenticacao(String email, String senha) throws RegraDeNegocioException {
         this.validaLogin(email,senha);
@@ -119,6 +121,7 @@ public class UsuarioService {
         }
         Usuario usuario = this.retornUsuarioPorEmail(email);
         usuario.senha = Crypt.sha1(senha);
+        usuario.token = crypto.generateToken();
         usuarioRepository.editar(Usuario.class, usuario);
     }
 }

@@ -15,6 +15,7 @@
         @inputText(usuarioForm("email"),
           '_label -> "Email")(text, implicitly[Messages])
       </div>
+      @CSRF.formField
       <div class="element-wrapper">
         @inputText(usuarioForm("senha"),
           '_label -> "Senha")(password, implicitly[Messages])

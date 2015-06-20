@@ -169,3 +169,18 @@ textarea:focus ~ label, textarea:valid ~ label{
 .sidebar {
     padding-top: 42px;
 }
+
+.dataTables_filter label {
+    font-size: 2rem;
+    left: 58rem;
+    top: 110px;
+    color: #9e9e9e;
+}
+
+label input[type="search"] {
+    padding: 0px 0px;
+}
+
+#message{
+    visibility: hidden;
+}

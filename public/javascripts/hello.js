@@ -228,5 +228,7 @@ $(document).ready(function() {
         'bLengthChange': false,
         'bInfo': false
     });
-
+    if ($("#message").text().length > 0) {
+        Materialize.toast($("#message").text(), 4000)
+    }
 } );

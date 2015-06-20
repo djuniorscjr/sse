@@ -9,6 +9,8 @@ import play.Play;
 import play.libs.Crypto;
 import repository.AlunoRepository;
 
+import java.util.List;
+
 /**
  * Created by Domingos Junior on 01/06/2015.
  */
@@ -26,5 +28,17 @@ public class AlunoService {
         aluno.usuario.senha = Crypt.sha1(aluno.usuario.senha);
         aluno.usuario.token = crypto.generateToken();
         alunoRepository.salvar(Aluno.class,aluno);
+    }
+
+    public List<Aluno> retornaTodos(){
+        return alunoRepository.retornaTodos(Aluno.class);
+    }
+
+    public Aluno alterar(Aluno aluno){
+        return alunoRepository.editar(Aluno.class, aluno);
+    }
+
+    public Aluno retornaPorId(Long id){
+        return alunoRepository.getObjeto(Aluno.class, id);
     }
 }

@@ -15,6 +15,7 @@
     @if(flash.get("sucesso")) {
       <p style="color : blue">@flash.get("sucesso")</p>
     }
+    @CSRF.formField
     <div class="row">
       <div class="input-field col s12">
         @textarea(srfForm("emails"), '_label -> "Emails para Solicitar Registro")(area, implicitly[Messages])

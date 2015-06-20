@@ -18,6 +18,7 @@
             <div class="element-wrapper">
                 email : @usuario.email
             </div>
+            @CSRF.formField
             <div class="element-wrapper">
                 @inputText(srpForm("nome"))(text, implicitly[Messages])
             </div>

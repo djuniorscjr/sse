@@ -34,6 +34,8 @@ public class ProfessorService {
     private ProfessorRepository professorRepository;
     @Inject
     private UsuarioService usuarioService;
+    @Inject
+    private Crypto crypto;
 
     public Professor salvar(Professor professor){
         professor.usuario.ativo = false;
@@ -104,7 +106,6 @@ public class ProfessorService {
         professor.usuario.ativo = true;
         professor.usuario.permissao = Permissao.PROFESSOR_ORIENTADOR;
         professor.usuario.senha = Crypt.sha1(professor.usuario.senha);
-        Crypto crypto = Play.application().injector().instanceOf(Crypto.class);
         professor.usuario.token = crypto.generateToken();
         professorRepository.editar(Professor.class, professor);
     }
