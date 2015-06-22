@@ -1,0 +1,36 @@
+@(documentos: java.util.List[Documento])(implicit session : play.mvc.Http.Session,request : play.mvc.Http.Request, flash: play.mvc.Http.Flash)
+
+
+
+@dashboard("Consultar Aluno"){
+  <div id="message">@flash.get("sucesso")</div>
+  <div class="form_wrapper-medium">
+    <h3 class="red-text">Consulta Etapa </h3>
+    <table id="table">
+      <thead>
+        <tr>
+          <th>Ordem</th>
+          <th>Título</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for(documento <- documentos) {
+          <tr>
+            <td>@documento.numero</td>
+            <td>@documento.titulo</td>
+            <td>
+              <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Deleta Etapa" href="#"><i class="small mdi-action-done green-text"></i></a>
+              <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Edita Etapa" href="#"><i class="small mdi-action-done green-text"></i></a>
+
+            </td>
+          </tr>
+        }
+
+      </tbody>
+    </table>
+  </div>
+
+}
+

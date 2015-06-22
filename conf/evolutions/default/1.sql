@@ -12,6 +12,24 @@ create table aluno (
   constraint pk_aluno primary key (id))
 ;
 
+create table anexo (
+  id                        bigserial not null,
+  descricao                 varchar(255),
+  content_type              varchar(255),
+  arquivo                   bytea,
+  constraint pk_anexo primary key (id))
+;
+
+create table documento (
+  id                        bigserial not null,
+  titulo                    varchar(255),
+  descricao                 varchar(255),
+  numero                    integer,
+  anexo_id                  bigint,
+  constraint uq_documento_anexo_id unique (anexo_id),
+  constraint pk_documento primary key (id))
+;
+
 create table professor (
   id                        bigserial not null,
   nome                      varchar(255),
@@ -34,14 +52,20 @@ create table usuario (
 
 alter table aluno add constraint fk_aluno_usuario_1 foreign key (usuario_id) references usuario (id);
 create index ix_aluno_usuario_1 on aluno (usuario_id);
-alter table professor add constraint fk_professor_usuario_2 foreign key (usuario_id) references usuario (id);
-create index ix_professor_usuario_2 on professor (usuario_id);
+alter table documento add constraint fk_documento_anexo_2 foreign key (anexo_id) references anexo (id);
+create index ix_documento_anexo_2 on documento (anexo_id);
+alter table professor add constraint fk_professor_usuario_3 foreign key (usuario_id) references usuario (id);
+create index ix_professor_usuario_3 on professor (usuario_id);
 
 
 
 # --- !Downs
 
 drop table if exists aluno cascade;
+
+drop table if exists anexo cascade;
+
+drop table if exists documento cascade;
 
 drop table if exists professor cascade;
 

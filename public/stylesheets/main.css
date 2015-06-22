@@ -184,3 +184,7 @@ label input[type="search"] {
 #message{
     visibility: hidden;
 }
+.file-field input.file-path {
+    margin-left: 125px;
+    width: calc(100% - 100px);
+}

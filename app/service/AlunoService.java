@@ -27,7 +27,7 @@ public class AlunoService {
 
         aluno.usuario.senha = Crypt.sha1(aluno.usuario.senha);
         aluno.usuario.token = crypto.generateToken();
-        alunoRepository.salvar(Aluno.class,aluno);
+        alunoRepository.salvar(aluno);
     }
 
     public List<Aluno> retornaTodos(){
@@ -35,7 +35,7 @@ public class AlunoService {
     }
 
     public Aluno alterar(Aluno aluno){
-        return alunoRepository.editar(Aluno.class, aluno);
+        return alunoRepository.editar(aluno);
     }
 
     public Aluno retornaPorId(Long id){

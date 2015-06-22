@@ -11,11 +11,12 @@
       @if(flash.get("error")) {
         <p style="color : red" class="center-align">@flash.get("error")</p>
       }
+      @CSRF.formField
       <div class="element-wrapper">
         @inputText(usuarioForm("email"),
           '_label -> "Email")(text, implicitly[Messages])
       </div>
-      @CSRF.formField
+
       <div class="element-wrapper">
         @inputText(usuarioForm("senha"),
           '_label -> "Senha")(password, implicitly[Messages])

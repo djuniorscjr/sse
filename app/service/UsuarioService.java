@@ -69,7 +69,7 @@ public class UsuarioService {
     public Usuario atualizar(Usuario usuario, String confirmaSenha, String email) throws RegraDeNegocioException {
         this.validaAtualizacao(usuario, confirmaSenha, email);
         usuario.senha = Crypt.sha1(usuario.senha);
-        return usuarioRepository.editar(Usuario.class, usuario);
+        return usuarioRepository.editar(usuario);
     }
 
     private void validaAtualizacao(Usuario usuario, String confirmaSenha, String email) throws RegraDeNegocioException {
@@ -122,6 +122,6 @@ public class UsuarioService {
         Usuario usuario = this.retornUsuarioPorEmail(email);
         usuario.senha = Crypt.sha1(senha);
         usuario.token = crypto.generateToken();
-        usuarioRepository.editar(Usuario.class, usuario);
+        usuarioRepository.editar(usuario);
     }
 }

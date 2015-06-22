@@ -18,3 +18,4 @@ youve.been.logged.out = Você saiu do SSE!
 infor.new.srp = Observação: Para mais de uma solicitação, separe os emails com virgula. Ex.: meunome@meuemail.com,seunome@seuemail.com
 op.success = Operação realizada com sucesso
 op.success.send = Email enviado com sucesso, por favor verifique seu email para realizar a mudança
+op.error = Error! Contacte o administrador.

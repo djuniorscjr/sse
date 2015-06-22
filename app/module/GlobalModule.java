@@ -2,11 +2,9 @@ package module;
 
 import com.google.inject.AbstractModule;
 import com.google.inject.Provider;
-import repository.AlunoRepository;
-import repository.BasicRepository;
-import repository.ProfessorRepository;
-import repository.UsuarioRepository;
+import repository.*;
 import service.AlunoService;
+import service.EtapaService;
 import service.ProfessorService;
 import service.UsuarioService;
 
@@ -51,6 +49,18 @@ public class GlobalModule extends AbstractModule {
             @Override
             public UsuarioRepository get() {
                 return new UsuarioRepository();
+            }
+        });
+        bind(EtapaService.class).toProvider(new Provider<EtapaService>() {
+            @Override
+            public EtapaService get() {
+                return new EtapaService();
+            }
+        });
+        bind(EtapaRepository.class).toProvider(new Provider<EtapaRepository>() {
+            @Override
+            public EtapaRepository get() {
+                return new EtapaRepository();
             }
         });
     }

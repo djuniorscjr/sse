@@ -12,13 +12,13 @@ import java.util.List;
 public class BasicRepository {
 
     @Transactional
-    public <T> T salvar(Class<T> classToCast,Object entity) {
+    public <T> T salvar(Object entity) {
         Ebean.save((T) entity);
         return (T) entity;
     }
 
     @Transactional
-    public <T> T editar(Class<T> classToCast,Object entity){
+    public <T> T editar(Object entity){
         Ebean.update((T) entity);
         return (T) entity;
     }
@@ -45,7 +45,10 @@ public class BasicRepository {
     }
 
     public <T> List<T> retornaListaPorData(Class<T> classToCast, String campo, Object dataInicio, Object dataFim){
-        return Ebean.find(classToCast).where().between(campo,dataInicio, dataFim).findList();
+        return Ebean.find(classToCast).where().between(campo, dataInicio, dataFim).findList();
     }
 
+    public <T> List<T> retornaListaOrderbyCampo(Class<T> classToCast, String campo){
+        return Ebean.find(classToCast).orderBy(campo).findList();
+    }
 }

@@ -44,7 +44,7 @@ public class ProfessorService {
         Crypto crypto = Play.application().injector().instanceOf(Crypto.class);
         professor.usuario.senha = Crypt.sha1(professor.usuario.senha);
         professor.usuario.token = crypto.generateToken();
-        return professorRepository.salvar(Professor.class, professor);
+        return professorRepository.salvar(professor);
     }
 
     public void enviarSolicitacaoRegistro(String emails) throws RegraDeNegocioException, IOException {
@@ -107,7 +107,7 @@ public class ProfessorService {
         professor.usuario.permissao = Permissao.PROFESSOR_ORIENTADOR;
         professor.usuario.senha = Crypt.sha1(professor.usuario.senha);
         professor.usuario.token = crypto.generateToken();
-        professorRepository.editar(Professor.class, professor);
+        professorRepository.editar(professor);
     }
 
     private void validaAlteracaoProfessor(Professor professor) throws RegraDeNegocioException {

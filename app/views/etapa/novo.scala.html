@@ -1,0 +1,39 @@
+@(documentoForm : play.data.Form[Documento])(implicit session : play.mvc.Http.Session,request : play.mvc.Http.Request, flash: play.mvc.Http.Flash)
+
+@import helper._
+@import util.Materialize._
+
+@dashboard("Cadastrar Novo Professores"){
+  <div class="form_wrapper-medium">
+    <h3 class="red-text">Cadastro de Etapa </h3>
+
+    @form(routes.EtapaController.cadastrar(), 'enctype -> "multipart/form-data"){
+      @if(documentoForm.hasErrors){
+        <p style="color:red" class="center-align">Corrija os erros abaixo!</p>
+      }
+      @if(flash.get("sucesso")){
+        <p style="color:blue" class="center-align">@flash.get("sucesso")</p>
+      }
+      @CSRF.formField
+      <div class="element-wrapper">
+      @helper.inputText(documentoForm("titulo"), '_label -> "Titulo")(text, implicitly[Messages])
+      </div>
+      <div class="element-wrapper">
+      @helper.inputText(documentoForm("descricao"), '_label -> "Descrição")(text, implicitly[Messages])
+      </div>
+      <div class="element-wrapper">
+        <div class="file-field input-field">
+          <input class="file-path validate" type="text" name="textoArquivo"/>
+          <div class="btn">
+            <span>Arquivo</span>
+            <input type="file" name="arquivo"/>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn waves-effect waves-light blue" type="submit" name="action">Cadastrar
+      </button>
+      <a class="waves-effect waves-teal btn-flat" href="@routes.EtapaController.index()">Nova Etapa</a>
+    }
+  </div>
+}
