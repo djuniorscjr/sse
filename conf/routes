@@ -39,6 +39,11 @@ GET         /aluno/bloquea                      @controllers.ConsultarUsuarioCon
 GET         /documento                          @controllers.EtapaController.index()
 POST        /documento                          @controllers.EtapaController.cadastrar()
 
+GET         /documento/excluir/:id              @controllers.EtapaAcoesController.excluir(id : Long)
+GET         /documento/edita/:id                @controllers.EtapaAcoesController.editar(id : Long)
+POST        /documento/edita/:id                @controllers.EtapaAcoesController.editando(id : Long)
+GET         /download/:id                       @controllers.EtapaAcoesController.dowloadArquivo(id: Long)
+
 GET         /documento/consulta                 @controllers.EtapaController.consulta()
 
 # Map static resources from the /public folder to the /assets URL path

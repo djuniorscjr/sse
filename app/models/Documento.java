@@ -18,6 +18,7 @@ public class Documento {
     @Constraints.Required
     public String titulo;
     @Constraints.Required
+    @Column(columnDefinition = "TEXT")
     public String descricao;
 
     public Integer numero;

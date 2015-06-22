@@ -1,6 +1,8 @@
 package controllers;
 
 import javax.inject.Inject;
+
+import models.Documento;
 import models.Usuario;
 import play.Play;
 import play.data.DynamicForm;
@@ -9,15 +11,20 @@ import play.data.validation.Constraints;
 import play.i18n.Messages;
 import play.libs.Crypto;
 import play.mvc.*;
+import service.EtapaService;
 import service.UsuarioService;
 import util.RegraDeNegocioException;
 import views.html.*;
 import views.html.usuario.login;
 
+import java.util.List;
+
 public class Application extends Controller {
 
     @Inject
     private UsuarioService usuarioService;
+    @Inject
+    private EtapaService etapaService;
     private DynamicForm loginForm = Form.form();
 
     public Result index() {
@@ -26,7 +33,8 @@ public class Application extends Controller {
 
     @Security.Authenticated(AutenticacaoSegura.class)
     public Result admin() {
-        return ok(admin.render(session(),request()));
+        List<Documento> documentos = etapaService.retornaTodosOrdenadoPorNumero();
+        return ok(admin.render(documentos,session(),request()));
     }
 
     public Result login(){

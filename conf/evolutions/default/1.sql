@@ -23,7 +23,7 @@ create table anexo (
 create table documento (
   id                        bigserial not null,
   titulo                    varchar(255),
-  descricao                 varchar(255),
+  descricao                 TEXT,
   numero                    integer,
   anexo_id                  bigint,
   constraint uq_documento_anexo_id unique (anexo_id),

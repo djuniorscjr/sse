@@ -2,7 +2,7 @@
 
 
 
-@dashboard("Consultar Aluno"){
+@dashboard("Consultar Etapa"){
   <div id="message">@flash.get("sucesso")</div>
   <div class="form_wrapper-medium">
     <h3 class="red-text">Consulta Etapa </h3>
@@ -21,8 +21,8 @@
             <td>@documento.numero</td>
             <td>@documento.titulo</td>
             <td>
-              <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Deleta Etapa" href="#"><i class="small mdi-action-done green-text"></i></a>
-              <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Edita Etapa" href="#"><i class="small mdi-action-done green-text"></i></a>
+              <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Deleta Etapa" href="@routes.EtapaAcoesController.excluir(documento.id)"><i class="small mdi-navigation-close red-text"></i></a>
+              <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Edita Etapa" href="@routes.EtapaAcoesController.editar(documento.id)"><i class="small mdi-image-edit blue-text"></i></a>
 
             </td>
           </tr>

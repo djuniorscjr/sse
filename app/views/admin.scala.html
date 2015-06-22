@@ -1,21 +1,22 @@
-@(implicit session : play.mvc.Http.Session,request : play.mvc.Http.Request)
+@(etapas : java.util.List[Documento])(implicit session : play.mvc.Http.Session,request : play.mvc.Http.Request)
 @dashboard("SSE") {
   <div>
     <h5 class="red-text">Etapas para inscrição institucional do Estágio Supervisionado</h5>
 
     <ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
-      <li>
-        <div class="collapsible-header"><i class="mdi-image-filter-1"></i> First</div>
-        <div class="collapsible-body" style=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
-      </li>
-      <li class="active">
-        <div class="collapsible-header"><i class="mdi-image-filter-2"></i> Second</div>
-        <div class="collapsible-body" style="display: block;"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
-      </li>
-      <li>
-        <div class="collapsible-header"><i class="mdi-image-filter-3"></i> Third</div>
-        <div class="collapsible-body" style=""><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p></div>
-      </li>
+      @for(etapa <- etapas) {
+        <li>
+          <div class="collapsible-header"><i class="mdi-image-filter-@etapa.numero"></i> @etapa.titulo</div>
+          <div class="collapsible-body">
+            <p>@etapa.descricao</p>
+            <p class="center-align">@etapa.anexo.descricao
+            <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Download" href="@routes.EtapaAcoesController.dowloadArquivo(etapa.id)">
+              <i class="small mdi-file-cloud-download green-text"></i>
+            </a>
+            </p>
+          </div>
+        </li>
+      }
     </ul>
   </div>
 }

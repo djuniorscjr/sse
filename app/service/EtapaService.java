@@ -25,4 +25,16 @@ public class EtapaService {
     public List<Documento> retornaTodosOrdenadoPorNumero(){
         return etapaRepository.retornaListaOrderbyCampo(Documento.class, "numero asc");
     }
+
+    public Documento retornaPorId(Long id){
+        return etapaRepository.getObjeto(Documento.class, id);
+    }
+
+    public Documento editar(Documento documento){
+        return etapaRepository.editar(documento);
+    }
+
+    public void excluir(Long documento){
+        etapaRepository.deletar(Documento.class, documento);
+    }
 }

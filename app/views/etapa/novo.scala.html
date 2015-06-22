@@ -18,12 +18,14 @@
       <div class="element-wrapper">
       @helper.inputText(documentoForm("titulo"), '_label -> "Titulo")(text, implicitly[Messages])
       </div>
-      <div class="element-wrapper">
-      @helper.inputText(documentoForm("descricao"), '_label -> "Descrição")(text, implicitly[Messages])
+      <div class="row">
+        <div class="input-field col s12">
+        @textarea(documentoForm("descricao"), '_label -> "Descrição")(area, implicitly[Messages])
+        </div>
       </div>
       <div class="element-wrapper">
         <div class="file-field input-field">
-          <input class="file-path validate" type="text" name="textoArquivo"/>
+          <input class="file-path validate" type="text" name="textorquivo"/>
           <div class="btn">
             <span>Arquivo</span>
             <input type="file" name="arquivo"/>

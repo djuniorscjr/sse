@@ -1,0 +1,45 @@
+@(documentoForm : play.data.Form[Documento], id : Long)(implicit session : play.mvc.Http.Session,request : play.mvc.Http.Request, flash: play.mvc.Http.Flash)
+
+@import helper._
+@import util.Materialize._
+
+@dashboard("Editar Etapa"){
+  <div class="form_wrapper-medium">
+    <h3 class="red-text">Edita de Etapa </h3>
+
+    @form(routes.EtapaAcoesController.editando(id), 'enctype -> "multipart/form-data"){
+      @if(documentoForm.hasErrors){
+        <p style="color:red" class="center-align">Corrija os erros abaixo!</p>
+      }
+      @if(flash.get("sucesso")){
+        <p style="color:blue" class="center-align">@flash.get("sucesso")</p>
+      }
+      @CSRF.formField
+      <div class="element-wrapper">
+      @helper.inputText(documentoForm("titulo"), '_label -> "Titulo")(text, implicitly[Messages])
+      </div>
+      <div class="element-wrapper">
+      @helper.inputText(documentoForm("descricao"), '_label -> "Descrição")(text, implicitly[Messages])
+      </div>
+      <div class="element-wrapper">
+        @if(documentoForm.field("anexo.descricao").value()){
+          @documentoForm.field("anexo.descricao").value() <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Download" href="@routes.EtapaAcoesController.dowloadArquivo(id)">
+                                                            <i class="small mdi-file-cloud-download green-text"></i>
+                                                          </a>
+        }
+      </div>
+      <div class="element-wrapper">
+        <div class="file-field input-field">
+          <input class="file-path validate" type="text" name="textorquivo"/>
+          <div class="btn">
+            <span>Arquivo</span>
+            <input type="file" name="arquivo"/>
+          </div>
+        </div>
+      </div>
+
+      <button class="btn waves-effect waves-light blue" type="submit" name="action">Salvar
+      </button>
+    }
+  </div>
+}

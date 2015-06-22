@@ -1,12 +1,15 @@
 package controllers;
 
+import action.Controle;
 import models.Anexo;
 import models.Documento;
+import models.Permissao;
 import play.data.Form;
 import play.i18n.Messages;
 import play.mvc.Controller;
 import play.mvc.Http;
 import play.mvc.Result;
+import play.mvc.Security;
 import service.EtapaService;
 import views.html.etapa.consulta;
 import views.html.etapa.novo;
@@ -20,6 +23,8 @@ import java.util.List;
 /**
  * Created by Domingos Junior on 20/06/2015.
  */
+@Security.Authenticated(AutenticacaoSegura.class)
+@Controle({Permissao.ADMINISTRADOR, Permissao.COORDENADOR,Permissao.PROFESSOR_DISCIPLINA})
 public class EtapaController extends Controller{
 
     @Inject
@@ -35,7 +40,6 @@ public class EtapaController extends Controller{
     public Result cadastrar() throws IOException {
         Form<Documento> formRequest = Form.form(Documento.class).bindFromRequest();
         if(formRequest.hasErrors()){
-            System.out.println(formRequest.errors().toString());
             return badRequest(novo.render(formRequest, session(), request(), flash()));
         }else{
             Http.MultipartFormData body = request().body().asMultipartFormData();
@@ -52,7 +56,6 @@ public class EtapaController extends Controller{
             etapaService.salvar(documento);
             flash("sucesso", Messages.get("op.success"));
         }
-
 
 
         return redirect(routes.EtapaController.index());
