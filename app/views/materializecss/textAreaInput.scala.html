@@ -3,7 +3,7 @@
 @import views.html.helper.FieldElements
 
 <textarea id="@elements.field.id" name="@elements.field.name" class="materialize-textarea @if(elements.field.hasErrors){invalid}">@elements.field.value.getOrElse("")</textarea>
-<label for="@elements.field.id">@elements.args.get('_label)</label>
+<label for="@elements.field.id" class="active">@elements.args.get('_label)</label>
 @if(elements.field.hasErrors) {
     <span class="small">
         <span class="badge red white-text">Erro</span><span class="red-text"></span> @elements.errors.mkString(", ")

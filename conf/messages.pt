@@ -12,6 +12,8 @@ error.emails = Existe um email inválido
 error.email  = Email inválido
 error.email.not.record  = Email não existe
 error.confirmation.password = O campo senha não corresponde a confirmação
+error.min = O valor desse campo deve ser no mínimo 1
+
 invalid.user.or.password = Email ou senha inválido
 account.not.validated = Usuário inativo, entre em contato com administração!
 youve.been.logged.out = Você saiu do SSE!

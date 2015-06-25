@@ -1,5 +1,6 @@
 package controllers;
 
+import models.Projeto;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -7,6 +8,7 @@ import play.data.DynamicForm;
 import play.data.Form;
 import play.mvc.Controller;
 import play.mvc.Result;
+import service.ProjetoService;
 import views.html.projeto.novo;
 
 /**
@@ -14,13 +16,21 @@ import views.html.projeto.novo;
  */
 public class ProjetoController extends Controller {
 
+    private ProjetoService projetoService;
+    private Form<Projeto> projetoForm = Form.form(Projeto.class);
+
     public Result index(){
-        DynamicForm dynamicForm = Form.form();
-        return ok(novo.render(dynamicForm,session(),request(),flash()));
+        return ok(novo.render(projetoForm,session(),request(),flash()));
     }
 
     public Result cadastrar(){
-        DynamicForm dynamicForm = Form.form().bindFromRequest();
+        projetoForm = Form.form(Projeto.class).bindFromRequest();
+        if(projetoForm.hasErrors()){
+            return ok(novo.render(projetoForm, session(), request(), flash()));
+        }else{
+
+        }
+
         return redirect(routes.ProjetoController.index());
     }
 }

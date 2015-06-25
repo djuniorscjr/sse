@@ -24,6 +24,7 @@ public class Projeto {
     public String descricao;
 
     @Constraints.Required
+    @Constraints.Min(value = 1)
     public Integer quantidadeMaxDeParticipantes;
 
     @Valid

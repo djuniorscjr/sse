@@ -3,10 +3,7 @@ package module;
 import com.google.inject.AbstractModule;
 import com.google.inject.Provider;
 import repository.*;
-import service.AlunoService;
-import service.EtapaService;
-import service.ProfessorService;
-import service.UsuarioService;
+import service.*;
 
 /**
  * Created by Domingos Junior on 01/06/2015.
@@ -61,6 +58,30 @@ public class GlobalModule extends AbstractModule {
             @Override
             public EtapaRepository get() {
                 return new EtapaRepository();
+            }
+        });
+        bind(ProjetoService.class).toProvider(new Provider<ProjetoService>() {
+            @Override
+            public ProjetoService get() {
+                return new ProjetoService();
+            }
+        });
+        bind(ProjetoRepository.class).toProvider(new Provider<ProjetoRepository>() {
+            @Override
+            public ProjetoRepository get() {
+                return new ProjetoRepository();
+            }
+        });
+        bind(RelatorioService.class).toProvider(new Provider<RelatorioService>() {
+            @Override
+            public RelatorioService get() {
+                return new RelatorioService();
+            }
+        });
+        bind(RelatorioRepository.class).toProvider(new Provider<RelatorioRepository>() {
+            @Override
+            public RelatorioRepository get() {
+                return new RelatorioRepository();
             }
         });
     }
