@@ -9,11 +9,13 @@
           <div class="collapsible-header"><i class="mdi-image-filter-@etapa.numero"></i> @etapa.titulo</div>
           <div class="collapsible-body">
             <p>@etapa.descricao</p>
-            <p class="center-align">@etapa.anexo.descricao
-            <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Download" href="@routes.EtapaAcoesController.dowloadArquivo(etapa.id)">
-              <i class="small mdi-file-cloud-download green-text"></i>
-            </a>
-            </p>
+            @if(etapa.anexo != null){
+              <p class="center-align">@etapa.anexo.descricao
+              <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Download" href="@routes.EtapaAcoesController.dowloadArquivo(etapa.id)">
+                <i class="small mdi-file-cloud-download green-text"></i>
+              </a>
+              </p>
+            }
           </div>
         </li>
       }

@@ -28,4 +28,6 @@ public class Aluno {
     @PrimaryKeyJoinColumn
     public Usuario usuario;
 
+    @ManyToOne(optional=true)
+    public Projeto projeto;
 }

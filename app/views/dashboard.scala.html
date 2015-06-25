@@ -19,9 +19,11 @@
     @common.nav(session,request)
     <div class="container">
       <div class="row">
-        <div class="col s3">
-          @common.sidebar(session,request)
-        </div>
+        @if(session.get("permissao")) {
+          <div class="col s3">
+          @common.sidebar(session, request)
+          </div>
+        }
         <div class="col s9">
           @content
         </div>

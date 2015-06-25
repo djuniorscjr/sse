@@ -1,43 +1,61 @@
 @(implicit session : play.mvc.Http.Session, request : play.mvc.Http.Request)
 <ul class="collapsible collapsible-accordion sidebar">
-  <li class="bold"><a class="collapsible-header  waves-effect waves-teal">Professor</a>
-    <div class="collapsible-body" style="display : none ;">
-      <ul>
-        <li>
-          <a href="@routes.ProfessorController.novo()" class="waves-effect waves-teal btn-flat botao">
-                          Cadastro</a>
-        </li>
-        <li class="divider"></li>
-        <li>
-          <a href="@routes.ProfessorController.solicitarRegistro()" class="waves-effect waves-teal btn-flat botao">
-                          Solicitar Registro</a>
-        </li>
+  @if(session.get("permissao").equals("ADMINISTRADOR") || session.get("permissao").equals("COORDENADOR") || session.get("permissao").equals("PROFESSOR_DISCIPLINA")) {
+    <li class="bold"><a class="collapsible-header  waves-effect waves-teal">Professor</a>
+      <div class="collapsible-body" style="display : none ;">
+        <ul>
+          <li>
+            <a href="@routes.ProfessorController.novo()" class="waves-effect waves-teal btn-flat botao">
+              Cadastro</a>
+          </li>
+          <li class="divider"></li>
+          <li>
+            <a href="@routes.ProfessorController.solicitarRegistro()" class="waves-effect waves-teal btn-flat botao">
+              Solicitar Registro</a>
+          </li>
 
-      </ul>
-    </div>
-  </li>
-  <li class="bold"><a class="collapsible-header  waves-effect waves-teal botao">Aluno</a>
-    <div class="collapsible-body" style="display:none;">
-      <ul>
-        <li>
-          <a href="@routes.ConsultarUsuarioController.consulta()" class="waves-effect waves-teal btn-flat botao">
-                          Consultar</a>
-        </li>
-      </ul>
-    </div>
-  </li>
-  <li class="bold"><a class="collapsible-header  waves-effect waves-teal botao">Etapa</a>
-    <div class="collapsible-body" style="display:none;">
-      <ul>
-        <li>
-          <a href="@routes.EtapaController.cadastrar()" class="waves-effect waves-teal btn-flat botao">
-            Cadastrar</a>
-        </li>
-        <li>
-          <a href="@routes.EtapaController.consulta()" class="waves-effect waves-teal btn-flat botao">
-            Consultar</a>
-        </li>
-      </ul>
-    </div>
-  </li>
+        </ul>
+      </div>
+    </li>
+    <li class="bold"><a class="collapsible-header  waves-effect waves-teal botao">Aluno</a>
+      <div class="collapsible-body" style="display : none ;">
+        <ul>
+          <li>
+            <a href="@routes.ConsultarUsuarioController.consulta()" class="waves-effect waves-teal btn-flat botao">
+              Consultar</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+    <li class="bold"><a class="collapsible-header  waves-effect waves-teal botao">Etapa</a>
+      <div class="collapsible-body" style="display : none ;">
+        <ul>
+          <li>
+            <a href="@routes.EtapaController.cadastrar()" class="waves-effect waves-teal btn-flat botao">
+              Cadastrar</a>
+          </li>
+          <li>
+            <a href="@routes.EtapaController.consulta()" class="waves-effect waves-teal btn-flat botao">
+              Consultar</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+  }
+  @if(session.get("permissao").equals("ALUNO")) {
+    <li class="bold"><a class="collapsible-header  waves-effect waves-teal botao">Relatório</a>
+      <div class="collapsible-body" style="display : none ;">
+        <ul>
+          <li>
+            <a href="@routes.EtapaController.cadastrar()" class="waves-effect waves-teal btn-flat botao">
+              Anexar</a>
+          </li>
+          <li>
+            <a href="@routes.EtapaController.consulta()" class="waves-effect waves-teal btn-flat botao">
+              Consultar</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+  }
 </ul>
