@@ -1,0 +1,22 @@
+@(usuarioForm: DynamicForm)(implicit session : play.mvc.Http.Session,request : play.mvc.Http.Request, flash: play.mvc.Http.Flash)
+
+@import helper._
+@import util.Materialize._
+
+@dashboard("Cadastrar Novo Professores"){
+  <div class="form_wrapper-medium">
+    <h3 class="red-text">Cadastro de Etapa </h3>
+
+    @form(routes.ProjetoController.cadastrar(), 'enctype -> "multipart/form-data"){
+
+      @CSRF.formField
+      <div class="element-wrapper">
+      @helper.inputText(usuarioForm("data"), '_label -> "Titulo")(date, implicitly[Messages])
+      </div>
+
+      <button class="btn waves-effect waves-light blue" type="submit" name="action">Cadastrar
+      </button>
+      <a class="waves-effect waves-teal btn-flat" href="@routes.ProjetoController.index()">Nova Projeto</a>
+    }
+  </div>
+}

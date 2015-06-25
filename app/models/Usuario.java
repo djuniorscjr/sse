@@ -2,6 +2,7 @@ package models;
 
 
 import org.joda.time.DateTime;
+import play.data.format.Formats;
 import play.data.validation.Constraints;
 import validator.FieldUnique;
 
@@ -28,6 +29,7 @@ public class Usuario {
     public String token;
     public Boolean ativo;
 
+    @Formats.DateTime(pattern = "dd/MM/yyyy hh:mm:ss")
     public DateTime dataDeCadastro;
 
     @Enumerated(EnumType.STRING)

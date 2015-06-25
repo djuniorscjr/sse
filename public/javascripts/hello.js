@@ -231,4 +231,31 @@ $(document).ready(function() {
     if ($("#message").text().length > 0) {
         Materialize.toast($("#message").text(), 4000)
     }
+    $('.datepicker').pickadate({
+        selectMonths: true,
+        selectYears: 1,
+        // Strings and translations
+        monthsFull: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio', 'Junho', 'Julho', 'Agosto', 'Setembro', 'Outubro', 'Novembro', 'Dezembro'],
+        monthsShort: ['Jan', 'Fev', 'Mar', 'Abr', 'Mai', 'Jun', 'Jul', 'Ago', 'Set', 'Out', 'Nov', 'Dez'],
+        weekdaysFull: ['Domingo', 'Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta', 'Sábado'],
+        weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab'],
+        // Buttons
+        today: 'Hoje',
+        clear: 'Limpar',
+        close: 'Fechar',
+
+// Accessibility labels
+        labelMonthNext: 'Próximo més',
+        labelMonthPrev: 'Més anterior',
+        labelMonthSelect: 'Selecione o més',
+        labelYearSelect: 'Selecione o ano',
+
+// Formats
+        format: 'd/mm/yyyy',
+        formatSubmit: undefined,
+        hiddenPrefix: undefined,
+        hiddenSuffix: '_submit',
+        hiddenName: undefined
+
+    });
 } );
