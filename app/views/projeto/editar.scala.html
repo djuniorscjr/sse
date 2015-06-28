@@ -1,4 +1,4 @@
-@(projetoForm: play.data.Form[Projeto])(implicit session : play.mvc.Http.Session,request : play.mvc.Http.Request, flash: play.mvc.Http.Flash)
+@(projetoForm: play.data.Form[Projeto], id : Long)(implicit session : play.mvc.Http.Session,request : play.mvc.Http.Request, flash: play.mvc.Http.Flash)
 
 @import helper._
 @import util.Materialize._
@@ -7,7 +7,7 @@
   <div class="form_wrapper-medium">
     <h3 class="red-text">Cadastro de Etapa </h3>
 
-    @form(routes.ProjetoController.cadastrar(), 'enctype -> "multipart/form-data"){
+    @form(routes.ProjetoController.editando(id), 'enctype -> "multipart/form-data"){
       @if(projetoForm.hasErrors){
         <p style="color:red" class="center-align">Corrija os erros abaixo!</p>
       }
@@ -28,17 +28,23 @@
         </div>
       </div>
       <div class="element-wrapper">
+      @if(projetoForm.field("anexo.descricao").value()){
+        @projetoForm.field("anexo.descricao").value() <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Download" href="@routes.AnexoController.dowloadArquivo(projetoForm.field("anexo.id").value())">
+          <i class="small mdi-file-cloud-download green-text"></i>
+        </a>
+      }
+      </div>
+      <div class="element-wrapper">
         <div class="file-field input-field">
-          <input class="file-path validate" type="text" name="textorquivo"/>
+          <input class="file-path validate" type="text" name="textorquivo" />
           <div class="btn">
             <span>Arquivo</span>
             <input type="file" name="arquivo"/>
           </div>
         </div>
       </div>
-      <button class="btn waves-effect waves-light blue" type="submit" name="action">Cadastrar
+      <button class="btn waves-effect waves-light blue" type="submit" name="action">Salvar
       </button>
-      <a class="waves-effect waves-teal btn-flat" href="@routes.ProjetoController.index()">Nova Projeto</a>
     }
   </div>
 }

@@ -3,16 +3,21 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="UTF-8"/>
     <title>Error</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link rel="stylesheet" media="screen" href="@routes.Assets.versioned("stylesheets/styles.min.css")">
   </head>
-  <body>
-    <div>
-      <h1>Error <span>404</span></h1>
-      <p>@mensagem</p>
-      <p>
-        <a href="/">Vá para página inical →</a>
-      </p>
+  <body class="blue-grey lighten-5">
+    <div class="container center">
+      <div class="intro red z-depth-1">
+        <h1 class="grey-text text-lighten-5">Error <span>404</span></h1>
+        <h5 clas="grey lighten-4 grey-text text-darken-1">@mensagem</h5>
+        <a class="waves-effect waves-light btn green" href="/">
+          Vá para página inical <i class="mdi-navigation-arrow-forward white-text"></i>
+        </a>
+      </div>
     </div>
   </body>
 </html>

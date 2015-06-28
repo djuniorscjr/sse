@@ -84,5 +84,18 @@ public class GlobalModule extends AbstractModule {
                 return new RelatorioRepository();
             }
         });
+
+        bind(AnexoService.class).toProvider(new Provider<AnexoService>() {
+            @Override
+            public AnexoService get() {
+                return new AnexoService();
+            }
+        });
+        bind(AnexoRepository.class).toProvider(new Provider<AnexoRepository>() {
+            @Override
+            public AnexoRepository get() {
+                return new AnexoRepository();
+            }
+        });
     }
 }

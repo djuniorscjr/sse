@@ -58,4 +58,20 @@
       </div>
     </li>
   }
+  @if(session.get("permissao").equals("PROFESSOR_ORIENTADOR")) {
+    <li class="bold"><a class="collapsible-header  waves-effect waves-teal botao">Projeto</a>
+      <div class="collapsible-body" style="display : none ;">
+        <ul>
+          <li>
+            <a href="@routes.ProjetoController.cadastrar()" class="waves-effect waves-teal btn-flat botao">
+              Cadastrar</a>
+          </li>
+          <li>
+            <a href="@routes.ProjetoController.consulta()" class="waves-effect waves-teal btn-flat botao">
+              Consultar</a>
+          </li>
+        </ul>
+      </div>
+    </li>
+  }
 </ul>

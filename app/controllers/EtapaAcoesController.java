@@ -25,20 +25,18 @@ import java.nio.file.Files;
  * Created by Domingos Junior on 21/06/2015.
  */
 @Security.Authenticated(AutenticacaoSegura.class)
-
+@Controle({Permissao.ADMINISTRADOR, Permissao.COORDENADOR,Permissao.PROFESSOR_DISCIPLINA})
 public class EtapaAcoesController extends Controller {
 
     @Inject
     private EtapaService etapaService;
 
-    @Controle({Permissao.ADMINISTRADOR, Permissao.COORDENADOR,Permissao.PROFESSOR_DISCIPLINA})
     public Result editar(Long id){
         Documento documento = etapaService.retornaPorId(id);
         Form<Documento> documentoForm = Form.form(Documento.class).fill(documento);
         return ok(editar.render(documentoForm, id, session(), request(), flash()));
     }
 
-    @Controle({Permissao.ADMINISTRADOR, Permissao.COORDENADOR,Permissao.PROFESSOR_DISCIPLINA})
     public Result editando(Long id) throws IOException {
         Form<Documento> documentoForm = Form.form(Documento.class).bindFromRequest();
         if(documentoForm.hasErrors()){
@@ -70,17 +68,11 @@ public class EtapaAcoesController extends Controller {
         return TODO;
     }
 
-    @Controle({Permissao.ADMINISTRADOR, Permissao.COORDENADOR,Permissao.PROFESSOR_DISCIPLINA})
+
     public Result excluir(Long id){
         etapaService.excluir(id);
         flash("sucesso", Messages.get("op.success"));
         return redirect(routes.EtapaController.consulta());
     }
 
-    public Result dowloadArquivo(Long id) throws RegraDeNegocioException {
-        Documento documento = etapaService.retornaPorId(id);
-        response().setContentType(documento.anexo.contentType);
-        response().setHeader("Content-disposition", "attachment; filename=" + documento.anexo.descricao);
-        return ok(Arquivo.returnaAnexo(documento.anexo.descricao, documento.anexo.arquivo));
-    }
 }

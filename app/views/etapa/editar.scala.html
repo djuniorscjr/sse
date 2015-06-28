@@ -23,7 +23,7 @@
       </div>
       <div class="element-wrapper">
         @if(documentoForm.field("anexo.descricao").value()){
-          @documentoForm.field("anexo.descricao").value() <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Download" href="@routes.EtapaAcoesController.dowloadArquivo(id)">
+          @documentoForm.field("anexo.descricao").value() <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Download" href="@routes.AnexoController.dowloadArquivo(documentoForm.field("anexo.id").value())">
                                                             <i class="small mdi-file-cloud-download green-text"></i>
                                                           </a>
         }

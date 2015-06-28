@@ -42,13 +42,18 @@ POST        /documento                          @controllers.EtapaController.cad
 GET         /documento/excluir/:id              @controllers.EtapaAcoesController.excluir(id : Long)
 GET         /documento/edita/:id                @controllers.EtapaAcoesController.editar(id : Long)
 POST        /documento/edita/:id                @controllers.EtapaAcoesController.editando(id : Long)
-GET         /download/:id                       @controllers.EtapaAcoesController.dowloadArquivo(id: Long)
+GET         /download/:id                       @controllers.AnexoController.dowloadArquivo(id: String)
 
 GET         /documento/consulta                 @controllers.EtapaController.consulta()
 
-GET        /projeto                            @controllers.ProjetoController.index()
-POST       /projeto                            @controllers.ProjetoController.cadastrar()
+GET         /projeto                            @controllers.ProjetoController.index()
+POST        /projeto                            @controllers.ProjetoController.cadastrar()
 
+GET         /projeto/editar/:id                 @controllers.ProjetoController.editar(id : Long)
+POST        /projeto/editar/:id                 @controllers.ProjetoController.editando(id : Long)
+
+GET         /projeto/consulta                   @controllers.ProjetoController.consulta()
+GET         /projeto/excluir/:id                @controllers.ProjetoController.excluir(id : Long)
 
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file                       controllers.Assets.versioned(path="/public", file: Asset)
