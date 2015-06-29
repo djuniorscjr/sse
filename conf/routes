@@ -55,6 +55,10 @@ POST        /projeto/editar/:id                 @controllers.ProjetoController.e
 GET         /projeto/consulta                   @controllers.ProjetoController.consulta()
 GET         /projeto/excluir/:id                @controllers.ProjetoController.excluir(id : Long)
 
+GET         /professor/consulta                 @controllers.ConsultarUsuarioController.consultaProfessor()
+GET         /professor/mudarPermissao/:id       @controllers.ConsultarUsuarioController.mudarStatus(id: Long)
+POST        /professor/mudarPermissao/:id       @controllers.ConsultarUsuarioController.mudarPermissao(id: Long)
+
 # Map static resources from the /public folder to the /assets URL path
 GET         /assets/*file                       controllers.Assets.versioned(path="/public", file: Asset)
 GET         /webjars/*file                      controllers.WebJarAssets.at(file)

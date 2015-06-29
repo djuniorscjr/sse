@@ -188,3 +188,8 @@ label input[type="search"] {
     margin-left: 125px;
     width: calc(100% - 100px);
 }
+
+#muda{
+    position: static;
+    width: 100%;
+}

@@ -258,4 +258,5 @@ $(document).ready(function() {
         hiddenName: undefined
 
     });
+    $('select').material_select();
 } );

@@ -4,6 +4,7 @@ import module.GlobalModule;
 import play.Application;
 import play.GlobalSettings;
 import play.api.mvc.EssentialFilter;
+import play.filters.csrf.CSRFFilter;
 import play.libs.F;
 import play.mvc.Http;
 import play.mvc.Result;
@@ -30,4 +31,8 @@ public class Global extends GlobalSettings {
         return F.Promise.<Result>pure(Results.internalServerError(error.render("Página não encontrada")));
     }
 
+    @Override
+    public <T extends EssentialFilter> Class<T>[] filters() {
+        return new Class[]{CSRFFilter.class};
+    }
 }

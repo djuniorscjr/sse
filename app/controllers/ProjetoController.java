@@ -29,7 +29,7 @@ import java.util.List;
  * Created by Domingos Junior on 25/06/2015.
  */
 @Security.Authenticated(AutenticacaoSegura.class)
-@Controle({Permissao.PROFESSOR_DISCIPLINA})
+@Controle({Permissao.PROFESSOR_ORIENTADOR})
 public class ProjetoController extends BasicController {
 
     @Inject

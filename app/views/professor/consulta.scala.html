@@ -1,0 +1,40 @@
+@(professores : java.util.List[Professor])(implicit session : play.mvc.Http.Session,request : play.mvc.Http.Request, flash: play.mvc.Http.Flash)
+
+
+
+@dashboard("Consultar Professor"){
+  <div id="message">@flash.get("sucesso")</div>
+  <div class="form_wrapper-medium">
+    <h3 class="red-text">Consulta do Professor </h3>
+    <table id="table">
+      <thead>
+        <tr>
+          <th>Nome</th>
+          <th>Email</th>
+          <th>Permissão</th>
+          <th>Cadastrou?</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for(prof <- professores) {
+          <tr>
+            <td>@prof.nome</td>
+            <td>@prof.usuario.email</td>
+            <td>@prof.usuario.permissao.descricao</td>
+            <td>
+                @if(prof.usuario.ativo){<i class="small mdi-action-done blue-text"></i>}else{<i class="small mdi-navigation-close red-text"></i>}
+            </td>
+            <td>
+              <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Alterar Permissão" href="@routes.ConsultarUsuarioController.mudarStatus(prof.id)"><i class="small mdi-av-loop green-text"></i></a>
+            </td>
+          </tr>
+        }
+
+      </tbody>
+    </table>
+  </div>
+
+}
+

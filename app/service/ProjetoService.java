@@ -27,7 +27,7 @@ public class ProjetoService {
     }
 
     public List<Projeto> retornaProjetoPorProfessor(Long usuarioId) {
-        return projetoRepository.retornaListaPorCampo(Projeto.class, "projeto.professor.id", usuarioId);
+        return projetoRepository.retornaListaPorCampo(Projeto.class, "professor.id", usuarioId);
     }
 
     public void remover(Long projeto) {

@@ -8,6 +8,8 @@ import play.Play;
 import play.data.DynamicForm;
 import play.data.Form;
 import play.data.validation.Constraints;
+import play.filters.csrf.CSRF;
+import play.filters.csrf.RequireCSRFCheck;
 import play.i18n.Messages;
 import play.libs.Crypto;
 import play.mvc.*;
@@ -31,11 +33,6 @@ public class Application extends Controller {
         return ok(index.render(session(),request()));
     }
 
-    @Security.Authenticated(AutenticacaoSegura.class)
-    public Result admin() {
-        List<Documento> documentos = etapaService.retornaTodosOrdenadoPorNumero();
-        return ok(admin.render(documentos,session(),request()));
-    }
 
     public Result login(){
         return ok(login.render(loginForm,session(),request(),flash()));
@@ -68,7 +65,15 @@ public class Application extends Controller {
         session().remove("email");
         session().remove("permissao");
         session().clear();
+
         flash("sucesso", Messages.get("youve.been.logged.out"));
         return redirect(routes.Application.login());
     }
+
+    @Security.Authenticated(AutenticacaoSegura.class)
+    public Result admin() {
+        List<Documento> documentos = etapaService.retornaTodosOrdenadoPorNumero();
+        return ok(admin.render(documentos, session(), request()));
+    }
+
 }

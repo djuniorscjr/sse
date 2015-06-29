@@ -4,6 +4,7 @@ import akka.util.Crypt;
 import javax.inject.Inject;
 
 import com.microtripit.mandrillapp.lutung.view.MandrillMessage;
+import models.Aluno;
 import models.Permissao;
 import models.Professor;
 import models.Usuario;
@@ -41,7 +42,6 @@ public class ProfessorService {
         professor.usuario.ativo = false;
         professor.usuario.dataDeCadastro = DateTime.now();
         professor.usuario.permissao = Permissao.PROFESSOR_ORIENTADOR;
-        Crypto crypto = Play.application().injector().instanceOf(Crypto.class);
         professor.usuario.senha = Crypt.sha1(professor.usuario.senha);
         professor.usuario.token = crypto.generateToken();
         return professorRepository.salvar(professor);
@@ -97,9 +97,15 @@ public class ProfessorService {
         return this.salvar(professor);
     }
 
-    public Professor retornaProfessorProUsuarioId(Long id){
+    public Professor retornaProfessorPorUsuarioId(Long id){
         return professorRepository.retornaProfessorPorUsuarioId(id);
     }
+
+    public Professor retornaProfessorPorId(Long id){
+        return professorRepository.getObjeto(Professor.class, id);
+    }
+
+
 
     public void alterarProfessor(Professor professor) throws RegraDeNegocioException {
         this.validaAlteracaoProfessor(professor);
@@ -114,5 +120,13 @@ public class ProfessorService {
         if(professor.nome == null || professor.usuario.senha == null || professor.nome.isEmpty() || professor.nome.trim().isEmpty() || professor.usuario.senha.isEmpty() || professor.usuario.senha.trim().isEmpty()){
             throw new RegraDeNegocioException(Messages.get("error.all.required"));
         }
+    }
+
+    public List<Professor> retornaTodos() {
+        return professorRepository.retornaTodos(Professor.class);
+    }
+
+    public void alterar(Professor professor){
+        professorRepository.editar(professor);
     }
 }

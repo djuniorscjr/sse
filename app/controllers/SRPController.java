@@ -46,7 +46,7 @@ public class SRPController extends Controller {
 
     public Result salvar(Long id){
         DynamicForm form = Form.form().bindFromRequest();
-        Professor professor = professorService.retornaProfessorProUsuarioId(id);
+        Professor professor = professorService.retornaProfessorPorUsuarioId(id);
         if(professor.usuario.ativo){
             flash("info", "Solicitação de Registro para Professor Orientador já utilizada.");
             return ok(continuaCadastroSRP.render(srpForm,professor.usuario,session(),request(),flash()));

@@ -8,18 +8,19 @@
   <div class="form_wrapper">
     <h3 class="red-text">SSE</h3>
     @form(routes.Application.autenticacao()) {
+      @CSRF.formField
       @if(flash.get("error")) {
         <p style="color : red" class="center-align">@flash.get("error")</p>
       }
-      @CSRF.formField
+
       <div class="element-wrapper">
-        @inputText(usuarioForm("email"),
-          '_label -> "Email")(text, implicitly[Messages])
+      @inputText(usuarioForm("email"),
+        '_label -> "Email")(text, implicitly[Messages])
       </div>
 
       <div class="element-wrapper">
-        @inputText(usuarioForm("senha"),
-          '_label -> "Senha")(password, implicitly[Messages])
+      @inputText(usuarioForm("senha"),
+        '_label -> "Senha")(password, implicitly[Messages])
       </div>
       <div class="element-wrapper">
         <button style="width: 100%" class="btn waves-effect waves-light btn-large col s12 m6" type="submit" name="action">Entrar</button>
