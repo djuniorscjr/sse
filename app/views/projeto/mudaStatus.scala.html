@@ -1,0 +1,31 @@
+@(statusForm: DynamicForm, id : Long)(implicit session : play.mvc.Http.Session,request : play.mvc.Http.Request, flash: play.mvc.Http.Flash)
+
+@import play.data.DynamicForm
+@import helper._
+@import util.Materialize._
+
+@main("Mudar Situação do Projeto") {
+  <div class="form_wrapper">
+    <h3>Mudar Situação do Projeto</h3>
+    @form(routes.ProjetoController.mudandoStatus(id)) {
+      @CSRF.formField
+      @if(flash.get("error")) {
+        <p style="color : red" class="center-align">@flash.get("error")</p>
+      }
+
+      <div class="element-wrapper">
+        <select name='@statusForm.field("status").name()'>
+
+          @for(status <- StatusProjeto.values()){
+            <option value="@status.name()" @if(status.name().equals(statusForm.field("status").value())){selected}>@status.descricao</option>
+          }
+        </select>
+        <label>Selecione nova permissão</label>
+      </div>
+
+      <div class="element-wrapper">
+        <button class="btn waves-effect waves-light btn-large" id="muda" type="submit" name="action">Mudar</button>
+      </div>
+    }
+  </div>
+}

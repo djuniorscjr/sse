@@ -23,9 +23,9 @@
             <td>@projeto.quantidadeMaxDeParticipantes</td>
             <td>@projeto.statusProjeto.descricao</td>
             <td>
-              <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Deleta Projeto" href="#"><i class="small mdi-navigation-close red-text"></i></a>
-              <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Edita Projeto" href="@routes.ProjetoController.editar(projeto.id)"><i class="small mdi-image-edit blue-text"></i></a>
-
+              <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Deletar Projeto" href="@routes.ProjetoController.excluir(projeto.id)"><i class="small mdi-navigation-close red-text"></i></a>
+              <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Editar Projeto" href="@routes.ProjetoController.editar(projeto.id)"><i class="small mdi-image-edit blue-text"></i></a>
+              <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Alterar Situação" href="@routes.ProjetoController.mudaStatus(projeto.id)"><i class="small mdi-av-loop green-text"></i></a>
             </td>
           </tr>
         }

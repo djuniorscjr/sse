@@ -64,7 +64,7 @@ public class Application extends Controller {
     public Result logout(){
         session().remove("email");
         session().remove("permissao");
-        session().clear();
+
 
         flash("sucesso", Messages.get("youve.been.logged.out"));
         return redirect(routes.Application.login());

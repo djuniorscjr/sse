@@ -1,6 +1,8 @@
 package service;
 
+import models.Professor;
 import models.Projeto;
+import models.StatusProjeto;
 import repository.ProjetoRepository;
 
 import javax.inject.Inject;
@@ -13,8 +15,13 @@ public class ProjetoService {
 
     @Inject
     private ProjetoRepository projetoRepository;
+    @Inject
+    private ProfessorService professorService;
 
-    public Projeto salvar(Object projeto) {
+    public Projeto salvar(Projeto projeto, Long usuarioId) {
+        Professor professor = professorService.retornaProfessorPorUsuarioId(usuarioId);
+        projeto.professor = professor;
+        projeto.statusProjeto = StatusProjeto.ABERTO;
         return projetoRepository.salvar(projeto);
     }
 
@@ -27,7 +34,7 @@ public class ProjetoService {
     }
 
     public List<Projeto> retornaProjetoPorProfessor(Long usuarioId) {
-        return projetoRepository.retornaListaPorCampo(Projeto.class, "professor.id", usuarioId);
+        return projetoRepository.retornaListaPorCampo(Projeto.class, "professor.usuario.id", usuarioId);
     }
 
     public void remover(Long projeto) {
