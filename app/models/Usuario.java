@@ -9,6 +9,7 @@ import validator.FieldUnique;
 import javax.persistence.*;
 import javax.validation.Valid;
 import javax.validation.constraints.Null;
+import java.util.List;
 
 /**
  * Created by Domingos Junior on 29/05/2015.
@@ -24,8 +25,10 @@ public class Usuario {
     @Constraints.Email
     @FieldUnique(classe = Usuario.class, campo = "email")
     public String email;
+
     @Constraints.Required
     public String senha;
+
     public String token;
     public Boolean ativo;
 
@@ -40,4 +43,8 @@ public class Usuario {
 
     @OneToOne(mappedBy = "usuario")
     public Professor professor;
+
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
+    public List<SituacaoRelatorio> situacoesRelatorio;
+
 }

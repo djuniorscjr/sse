@@ -21,6 +21,18 @@ create table anexo (
   constraint pk_anexo primary key (id))
 ;
 
+create table arquivo (
+  id                        bigserial not null,
+  data                      timestamp,
+  anexo_id                  bigint,
+  relatorio_id              bigint,
+  aluno_id                  bigint,
+  constraint uq_arquivo_anexo_id unique (anexo_id),
+  constraint uq_arquivo_relatorio_id unique (relatorio_id),
+  constraint uq_arquivo_aluno_id unique (aluno_id),
+  constraint pk_arquivo primary key (id))
+;
+
 create table documento (
   id                        bigserial not null,
   titulo                    varchar(255),
@@ -57,11 +69,22 @@ create table relatorio (
   quantidade                integer,
   descricao                 TEXT,
   data_de_entrega           timestamp,
+  data_final                timestamp,
   status_relatorio          varchar(12),
   anexo_id                  bigint,
   constraint ck_relatorio_status_relatorio check (status_relatorio in ('NAO_INICIADO','INICIADO','FECHADO')),
   constraint uq_relatorio_anexo_id unique (anexo_id),
   constraint pk_relatorio primary key (id))
+;
+
+create table situacao_relatorio (
+  id                        bigserial not null,
+  data                      timestamp,
+  status_relatorio          varchar(12),
+  relatorio_id              bigint,
+  usuario_id                bigint,
+  constraint ck_situacao_relatorio_status_relatorio check (status_relatorio in ('NAO_INICIADO','INICIADO','FECHADO')),
+  constraint pk_situacao_relatorio primary key (id))
 ;
 
 create table usuario (
@@ -80,16 +103,26 @@ alter table aluno add constraint fk_aluno_usuario_1 foreign key (usuario_id) ref
 create index ix_aluno_usuario_1 on aluno (usuario_id);
 alter table aluno add constraint fk_aluno_projeto_2 foreign key (projeto_id) references projeto (id);
 create index ix_aluno_projeto_2 on aluno (projeto_id);
-alter table documento add constraint fk_documento_anexo_3 foreign key (anexo_id) references anexo (id);
-create index ix_documento_anexo_3 on documento (anexo_id);
-alter table professor add constraint fk_professor_usuario_4 foreign key (usuario_id) references usuario (id);
-create index ix_professor_usuario_4 on professor (usuario_id);
-alter table projeto add constraint fk_projeto_anexo_5 foreign key (anexo_id) references anexo (id);
-create index ix_projeto_anexo_5 on projeto (anexo_id);
-alter table projeto add constraint fk_projeto_professor_6 foreign key (professor_id) references professor (id);
-create index ix_projeto_professor_6 on projeto (professor_id);
-alter table relatorio add constraint fk_relatorio_anexo_7 foreign key (anexo_id) references anexo (id);
-create index ix_relatorio_anexo_7 on relatorio (anexo_id);
+alter table arquivo add constraint fk_arquivo_anexo_3 foreign key (anexo_id) references anexo (id);
+create index ix_arquivo_anexo_3 on arquivo (anexo_id);
+alter table arquivo add constraint fk_arquivo_relatorio_4 foreign key (relatorio_id) references relatorio (id);
+create index ix_arquivo_relatorio_4 on arquivo (relatorio_id);
+alter table arquivo add constraint fk_arquivo_aluno_5 foreign key (aluno_id) references aluno (id);
+create index ix_arquivo_aluno_5 on arquivo (aluno_id);
+alter table documento add constraint fk_documento_anexo_6 foreign key (anexo_id) references anexo (id);
+create index ix_documento_anexo_6 on documento (anexo_id);
+alter table professor add constraint fk_professor_usuario_7 foreign key (usuario_id) references usuario (id);
+create index ix_professor_usuario_7 on professor (usuario_id);
+alter table projeto add constraint fk_projeto_anexo_8 foreign key (anexo_id) references anexo (id);
+create index ix_projeto_anexo_8 on projeto (anexo_id);
+alter table projeto add constraint fk_projeto_professor_9 foreign key (professor_id) references professor (id);
+create index ix_projeto_professor_9 on projeto (professor_id);
+alter table relatorio add constraint fk_relatorio_anexo_10 foreign key (anexo_id) references anexo (id);
+create index ix_relatorio_anexo_10 on relatorio (anexo_id);
+alter table situacao_relatorio add constraint fk_situacao_relatorio_relator_11 foreign key (relatorio_id) references relatorio (id);
+create index ix_situacao_relatorio_relator_11 on situacao_relatorio (relatorio_id);
+alter table situacao_relatorio add constraint fk_situacao_relatorio_usuario_12 foreign key (usuario_id) references usuario (id);
+create index ix_situacao_relatorio_usuario_12 on situacao_relatorio (usuario_id);
 
 
 
@@ -99,6 +132,8 @@ drop table if exists aluno cascade;
 
 drop table if exists anexo cascade;
 
+drop table if exists arquivo cascade;
+
 drop table if exists documento cascade;
 
 drop table if exists professor cascade;
@@ -106,6 +141,8 @@ drop table if exists professor cascade;
 drop table if exists projeto cascade;
 
 drop table if exists relatorio cascade;
+
+drop table if exists situacao_relatorio cascade;
 
 drop table if exists usuario cascade;
 
