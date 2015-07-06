@@ -19,9 +19,6 @@ public class Relatorio {
     public Long id;
 
     @Constraints.Required
-    public Integer quantidade;
-
-    @Constraints.Required
     @Column(columnDefinition = "TEXT")
     public String descricao;
 
@@ -44,4 +41,6 @@ public class Relatorio {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "relatorio")
     public List<SituacaoRelatorio> situacoesRelatorio;
 
+    @OneToMany(mappedBy = "relatorio")
+    public List<Arquivo> arquivos;
 }

@@ -26,11 +26,11 @@ public class Arquivo {
     @PrimaryKeyJoinColumn
     public Anexo anexo;
 
-    @OneToOne
+    @ManyToOne
     @PrimaryKeyJoinColumn
     public Relatorio relatorio;
 
-    @OneToOne
+    @ManyToOne
     @PrimaryKeyJoinColumn
     public Aluno aluno;
 }

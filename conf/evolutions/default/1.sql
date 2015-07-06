@@ -28,8 +28,6 @@ create table arquivo (
   relatorio_id              bigint,
   aluno_id                  bigint,
   constraint uq_arquivo_anexo_id unique (anexo_id),
-  constraint uq_arquivo_relatorio_id unique (relatorio_id),
-  constraint uq_arquivo_aluno_id unique (aluno_id),
   constraint pk_arquivo primary key (id))
 ;
 
@@ -66,7 +64,6 @@ create table projeto (
 
 create table relatorio (
   id                        bigserial not null,
-  quantidade                integer,
   descricao                 TEXT,
   data_de_entrega           timestamp,
   data_final                timestamp,

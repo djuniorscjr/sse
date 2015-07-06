@@ -5,6 +5,7 @@ import validator.FieldUnique;
 
 import javax.persistence.*;
 import javax.validation.Valid;
+import java.util.List;
 
 /**
  * Created by Domingos Junior on 29/05/2015.
@@ -30,4 +31,7 @@ public class Aluno {
 
     @ManyToOne(optional=true)
     public Projeto projeto;
+
+    @OneToMany(mappedBy = "aluno")
+    public List<Arquivo> arquivos;
 }
