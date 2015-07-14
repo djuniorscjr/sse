@@ -93,6 +93,17 @@ create table situacao_relatorio (
   constraint pk_situacao_relatorio primary key (id))
 ;
 
+create table solicitacao_de_participacao (
+  id                        bigserial not null,
+  data                      timestamp,
+  observacao                TEXT,
+  status_solicitacao_de_participacao varchar(6),
+  aluno_id                  bigint,
+  projeto_id                bigint,
+  constraint ck_solicitacao_de_participacao_status_solicitacao_de_participacao check (status_solicitacao_de_participacao in ('ACEITO','NEGADO')),
+  constraint pk_solicitacao_de_participacao primary key (id))
+;
+
 create table usuario (
   id                        bigserial not null,
   email                     varchar(255),
@@ -133,6 +144,10 @@ alter table situacao_relatorio add constraint fk_situacao_relatorio_relator_13 f
 create index ix_situacao_relatorio_relator_13 on situacao_relatorio (relatorio_id);
 alter table situacao_relatorio add constraint fk_situacao_relatorio_usuario_14 foreign key (usuario_id) references usuario (id);
 create index ix_situacao_relatorio_usuario_14 on situacao_relatorio (usuario_id);
+alter table solicitacao_de_participacao add constraint fk_solicitacao_de_participaca_15 foreign key (aluno_id) references aluno (id);
+create index ix_solicitacao_de_participaca_15 on solicitacao_de_participacao (aluno_id);
+alter table solicitacao_de_participacao add constraint fk_solicitacao_de_participaca_16 foreign key (projeto_id) references projeto (id);
+create index ix_solicitacao_de_participaca_16 on solicitacao_de_participacao (projeto_id);
 
 
 
@@ -155,6 +170,8 @@ drop table if exists relatorio cascade;
 drop table if exists situacao_projeto cascade;
 
 drop table if exists situacao_relatorio cascade;
+
+drop table if exists solicitacao_de_participacao cascade;
 
 drop table if exists usuario cascade;
 

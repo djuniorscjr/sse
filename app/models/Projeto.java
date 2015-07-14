@@ -43,4 +43,7 @@ public class Projeto {
 
     @OneToMany(mappedBy = "projeto")
     public List<SituacaoProjeto> situacaoProjetos;
+
+    @OneToMany(mappedBy = "projeto")
+    public List<SolicitacaoDeParticipacao> solicitacaoDeParticipacoes;
 }

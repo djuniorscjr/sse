@@ -34,4 +34,7 @@ public class Aluno {
 
     @OneToMany(mappedBy = "aluno")
     public List<Arquivo> arquivos;
+
+    @OneToMany(mappedBy = "aluno")
+    public List<SolicitacaoDeParticipacao> solicitacaoDeParticipacoes;
 }
