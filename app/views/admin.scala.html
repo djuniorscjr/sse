@@ -1,24 +1,52 @@
-@(etapas : java.util.List[Documento])(implicit session : play.mvc.Http.Session,request : play.mvc.Http.Request)
+@(etapas : java.util.List[Documento],projetos : java.util.List[Projeto], relatorio: Relatorio, aluno: Aluno)(implicit session : play.mvc.Http.Session,request : play.mvc.Http.Request, flash: play.mvc.Http.Flash)
+@import views.html.helper.CSRF
 @dashboard("SSE") {
   <div>
-    <h5 class="red-text">Etapas para inscrição institucional do Estágio Supervisionado</h5>
-
-    <ul class="collapsible popout collapsible-accordion" data-collapsible="accordion">
-      @for(etapa <- etapas) {
-        <li>
-          <div class="collapsible-header"><i class="mdi-image-filter-@etapa.numero"></i> @etapa.titulo</div>
-          <div class="collapsible-body">
-            <p>@etapa.descricao</p>
-            @if(etapa.anexo != null){
-              <p class="center-align">@etapa.anexo.descricao
-              <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Download" href="@routes.AnexoController.dowloadArquivo(etapa.anexo.id.toString)">
-                <i class="small mdi-file-cloud-download green-text"></i>
-              </a>
-              </p>
-            }
-          </div>
-        </li>
+    <h5 class="red-text">Bem vindo ao Sistema de Supervisão de Estágio</h5>
+    <ul class="tabs">
+      <li class="tab col s3"><a @if(!flash.get("relatorio") && !flash.get("projeto")){class="active"} href="#fase">Fases</a></li>
+      @if(session.get("permissao").equals("ALUNO")) {
+        <li class="tab col s3"><a @if(flash.get("projeto")){class="active"} href="#projeto">Projetos</a></li>
+        @if(aluno.projeto != null) {
+          <li class="tab col s3"><a @if(flash.get("relatorio")) {
+            class="active"
+          } href="#relatorio">Relatório</a></li>
+        }
       }
     </ul>
+    <div id="fase" class="col s12">
+      @common.fases(etapas)
+    </div>
+    @if(session.get("permissao").equals("ALUNO")) {
+      <div id="projeto" class="col s12">
+        @if(aluno.projeto != null) {
+          @common.projeto(aluno.projeto)
+        }else{
+          @common.projetos(projetos)
+        }
+      </div>
+      @if(aluno.projeto != null) {
+        <div id="relatorio" class="col s12">
+          @common.relatorio(relatorio)
+          <div id="message">@flash.get("sucesso")</div>
+          @helper.form(routes.RelatorioAlunoController.cadastrar(relatorio.id), 'enctype -> "multipart/form-data") {
+            @CSRF.formField
+
+            <div class="element-wrapper">
+              <div class="file-field input-field">
+                <input class="file-path validate" type="text" name="textorquivo"/>
+                <div class="btn">
+                  <span>Arquivo</span>
+                  <input type="file" name="arquivo"/>
+                </div>
+              </div>
+            </div>
+            <button class="btn waves-effect waves-light blue" type="submit" name="action">Salvar
+            </button>
+
+          }
+        </div>
+      }
+    }
   </div>
 }

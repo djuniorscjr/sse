@@ -3,71 +3,74 @@
 # ~~~~
 
 # Home page
-GET         /                                   @controllers.Application.index()
-GET         /dashboard                          @controllers.Application.admin()
+GET         /                                      @controllers.Application.index()
+GET         /dashboard                             @controllers.Application.admin()
 
-GET         /aluno                              @controllers.AlunoController.novo()
-POST        /aluno                              @controllers.AlunoController.cria()
+GET         /aluno                                 @controllers.AlunoController.novo()
+POST        /aluno                                 @controllers.AlunoController.cria()
 
-GET         /professor                          @controllers.ProfessorController.novo()
-POST        /professor                          @controllers.ProfessorController.cria()
+GET         /professor                             @controllers.ProfessorController.novo()
+POST        /professor                             @controllers.ProfessorController.cria()
 
-GET         /professor/solicitarRegistro        @controllers.ProfessorController.solicitarRegistro()
-POST        /professor/solicitarRegistro        @controllers.ProfessorController.enviarSolicitacaoRegistro()
+GET         /professor/solicitarRegistro           @controllers.ProfessorController.solicitarRegistro()
+POST        /professor/solicitarRegistro           @controllers.ProfessorController.enviarSolicitacaoRegistro()
 
-GET         /solicitarRegistro/:token           @controllers.SRPController.continuarSrp(token: String)
-POST        /solicitarRegistro/:id              @controllers.SRPController.salvar(id : Long)
+GET         /solicitarRegistro/:token              @controllers.SRPController.continuarSrp(token: String)
+POST        /solicitarRegistro/:id                 @controllers.SRPController.salvar(id : Long)
 
-GET         /login                              @controllers.Application.login()
-GET         /logout                             @controllers.Application.logout()
+GET         /login                                 @controllers.Application.login()
+GET         /logout                                @controllers.Application.logout()
 
-POST        /login                              @controllers.Application.autenticacao()
+POST        /login                                 @controllers.Application.autenticacao()
 
-GET         /editar                             @controllers.UsuarioController.editar()
-POST        /edicao                             @controllers.UsuarioController.edicao()
+GET         /editar                                @controllers.UsuarioController.editar()
+POST        /edicao                                @controllers.UsuarioController.edicao()
 
-GET         /usuario                            @controllers.UsuarioController.esqueceuSenha()
-POST        /usuario/alterarSenha               @controllers.UsuarioController.enviandoEmailSenha()
-GET         /usuario/senha/:token               @controllers.UsuarioController.alterarSenha(token: String)
-POST        /usuario/alterandoSenha             @controllers.UsuarioController.alterandoSenha()
+GET         /usuario                               @controllers.UsuarioController.esqueceuSenha()
+POST        /usuario/alterarSenha                  @controllers.UsuarioController.enviandoEmailSenha()
+GET         /usuario/senha/:token                  @controllers.UsuarioController.alterarSenha(token: String)
+POST        /usuario/alterandoSenha                @controllers.UsuarioController.alterandoSenha()
 
-GET         /aluno/consulta                     @controllers.ConsultarUsuarioController.consulta()
+GET         /aluno/consulta                        @controllers.ConsultarUsuarioController.consulta()
 
-GET         /aluno/ativa                        @controllers.ConsultarUsuarioController.ativaAluno(id: Long)
-GET         /aluno/bloquea                      @controllers.ConsultarUsuarioController.bloquearAluno(id: Long)
+GET         /aluno/ativa                           @controllers.ConsultarUsuarioController.ativaAluno(id: Long)
+GET         /aluno/bloquea                         @controllers.ConsultarUsuarioController.bloquearAluno(id: Long)
 
-GET         /documento                          @controllers.EtapaController.index()
-POST        /documento                          @controllers.EtapaController.cadastrar()
+GET         /documento                             @controllers.EtapaController.index()
+POST        /documento                             @controllers.EtapaController.cadastrar()
 
-GET         /documento/excluir/:id              @controllers.EtapaAcoesController.excluir(id : Long)
-GET         /documento/edita/:id                @controllers.EtapaAcoesController.editar(id : Long)
-POST        /documento/edita/:id                @controllers.EtapaAcoesController.editando(id : Long)
-GET         /download/:id                       @controllers.AnexoController.dowloadArquivo(id: String)
+GET         /documento/excluir/:id                 @controllers.EtapaAcoesController.excluir(id : Long)
+GET         /documento/edita/:id                   @controllers.EtapaAcoesController.editar(id : Long)
+POST        /documento/edita/:id                   @controllers.EtapaAcoesController.editando(id : Long)
+GET         /download/:id                          @controllers.AnexoController.dowloadArquivo(id: String)
 
-GET         /documento/consulta                 @controllers.EtapaController.consulta()
+GET         /documento/consulta                    @controllers.EtapaController.consulta()
 
-GET         /projeto                            @controllers.ProjetoController.index()
-POST        /projeto                            @controllers.ProjetoController.cadastrar()
+GET         /projeto                               @controllers.ProjetoController.index()
+POST        /projeto                               @controllers.ProjetoController.cadastrar()
 
-GET         /projeto/editar/:id                 @controllers.ProjetoController.editar(id : Long)
-POST        /projeto/editar/:id                 @controllers.ProjetoController.editando(id : Long)
+GET         /projeto/editar/:id                    @controllers.ProjetoController.editar(id : Long)
+POST        /projeto/editar/:id                    @controllers.ProjetoController.editando(id : Long)
 
-GET         /projeto/consulta                   @controllers.ProjetoController.consulta()
-GET         /projeto/excluir/:id                @controllers.ProjetoController.excluir(id : Long)
-GET         /projeto/mudaSituacao/:id           @controllers.ProjetoController.mudaStatus(id : Long)
-POST        /projeto/mudaSituacao/:id           @controllers.ProjetoController.mudandoStatus(id : Long)
+GET         /projeto/consulta                      @controllers.ProjetoController.consulta()
+GET         /projeto/excluir/:id                   @controllers.ProjetoController.excluir(id : Long)
+GET         /projeto/mudaSituacao/:id              @controllers.ProjetoController.mudaStatus(id : Long)
+POST        /projeto/mudaSituacao/:id              @controllers.ProjetoController.mudandoStatus(id : Long)
 
-GET         /professor/consulta                 @controllers.ConsultarUsuarioController.consultaProfessor()
-GET         /professor/mudarPermissao/:id       @controllers.ConsultarUsuarioController.mudarStatus(id: Long)
-POST        /professor/mudarPermissao/:id       @controllers.ConsultarUsuarioController.mudarPermissao(id: Long)
+GET         /professor/consulta                    @controllers.ConsultarUsuarioController.consultaProfessor()
+GET         /professor/mudarPermissao/:id          @controllers.ConsultarUsuarioController.mudarStatus(id: Long)
+POST        /professor/mudarPermissao/:id          @controllers.ConsultarUsuarioController.mudarPermissao(id: Long)
 
 
-GET         /professor/relatorio                  @controllers.RelatorioController.index()
-POST        /professor/relatorio                  @controllers.RelatorioController.cadastrar()
-GET         /professor/relatorio/editar/:id       @controllers.RelatorioController.editar(id: Long)
-POST        /professor/relatorio/editar/:id       @controllers.RelatorioController.editando(id: Long)
+GET         /professor/relatorio                   @controllers.RelatorioController.index()
+POST        /professor/relatorio                   @controllers.RelatorioController.cadastrar()
+GET         /professor/relatorio/consultar         @controllers.RelatorioController.consultar()
+GET         /professor/relatorio/editar/:id        @controllers.RelatorioController.editar(id: Long)
+POST        /professor/relatorio/editar/:id        @controllers.RelatorioController.editando(id: Long)
+GET         /professor/excluir/:id                 @controllers.RelatorioController.excluir(id : Long)
 
+POST        /relatorio/aluno/:id                   @controllers.RelatorioAlunoController.cadastrar(id: Long)
 
 # Map static resources from the /public folder to the /assets URL path
-GET         /assets/*file                       controllers.Assets.versioned(path="/public", file: Asset)
-GET         /webjars/*file                      controllers.WebJarAssets.at(file)
+GET         /assets/*file                          controllers.Assets.versioned(path="/public", file: Asset)
+GET         /webjars/*file                         controllers.WebJarAssets.at(file)

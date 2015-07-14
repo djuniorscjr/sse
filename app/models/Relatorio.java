@@ -22,13 +22,8 @@ public class Relatorio {
     @Column(columnDefinition = "TEXT")
     public String descricao;
 
-    @Constraints.Required
     @Formats.DateTime(pattern = "dd/MM/yyyy hh:mm:ss")
     public DateTime dataDeEntrega;
-
-    @Constraints.Required
-    @Formats.DateTime(pattern = "dd/MM/yyyy hh:mm:ss")
-    public DateTime dataFinal;
 
     @Enumerated(EnumType.STRING)
     public StatusRelatorio statusRelatorio;

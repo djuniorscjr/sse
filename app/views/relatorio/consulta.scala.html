@@ -1,0 +1,35 @@
+@(relatorios : java.util.List[Relatorio])(implicit session : play.mvc.Http.Session,request : play.mvc.Http.Request, flash: play.mvc.Http.Flash)
+
+
+
+@dashboard("Consultar Períodos do Relátorio"){
+  <div id="message">@flash.get("sucesso")</div>
+  <div class="form_wrapper-medium">
+    <h5 class="red-text">Consulta Períodos do Relátorio</h5>
+    <table id="table">
+      <thead>
+        <tr>
+          <th>Data de Entrega</th>
+          <th>Status</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        @for(relatorio <- relatorios) {
+          <tr>
+            <td>@relatorio.dataDeEntrega.getDayOfMonth /@relatorio.dataDeEntrega.getMonthOfYear/@relatorio.dataDeEntrega.getYear</td>
+            <td>@relatorio.statusRelatorio.descricao</td>
+            <td>
+              <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Deletar Relátorio" href="@routes.RelatorioController.excluir(relatorio.id)"><i class="small mdi-navigation-close red-text"></i></a>
+              <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Editar Relátorio" href="@routes.RelatorioController.editar(relatorio.id)"><i class="small mdi-image-edit blue-text"></i></a>
+            </td>
+          </tr>
+        }
+
+      </tbody>
+    </table>
+  </div>
+
+}
+

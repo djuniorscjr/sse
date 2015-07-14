@@ -1,0 +1,12 @@
+@(relatorio : Relatorio)
+
+  <p>Data de Entrega: @relatorio.dataDeEntrega.getDayOfMonth/@relatorio.dataDeEntrega.getMonthOfYear/@relatorio.dataDeEntrega.getYear </p>
+  <p>Descricao: @relatorio.descricao</p>
+  @if(relatorio.anexo != null){
+    <p class="center-align">@relatorio.anexo.descricao
+      <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Download" href="@routes.AnexoController.dowloadArquivo(relatorio.anexo.id.toString)">
+        <i class="small mdi-file-cloud-download green-text"></i>
+      </a>
+    </p>
+  }
+

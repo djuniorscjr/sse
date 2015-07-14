@@ -84,6 +84,7 @@ public class ProjetoController extends BasicController {
         }else{
             Http.MultipartFormData body = request().body().asMultipartFormData();
             Http.MultipartFormData.FilePart arquivo = body.getFile("arquivo");
+
             Projeto projeto = projetoForm.get();
             projeto.id = id;
             if(arquivo != null){

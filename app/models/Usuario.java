@@ -47,4 +47,7 @@ public class Usuario {
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "usuario")
     public List<SituacaoRelatorio> situacoesRelatorio;
 
+
+    @OneToMany(mappedBy = "usuario")
+    public List<SituacaoProjeto> situacaoProjetos;
 }

@@ -2,8 +2,7 @@ package controllers;
 
 import javax.inject.Inject;
 
-import models.Documento;
-import models.Usuario;
+import models.*;
 import play.Play;
 import play.data.DynamicForm;
 import play.data.Form;
@@ -13,20 +12,26 @@ import play.filters.csrf.RequireCSRFCheck;
 import play.i18n.Messages;
 import play.libs.Crypto;
 import play.mvc.*;
-import service.EtapaService;
-import service.UsuarioService;
+import service.*;
 import util.RegraDeNegocioException;
 import views.html.*;
 import views.html.usuario.login;
 
 import java.util.List;
 
-public class Application extends Controller {
+public class Application extends BasicController {
 
     @Inject
     private UsuarioService usuarioService;
     @Inject
     private EtapaService etapaService;
+    @Inject
+    private ProjetoService projetoService;
+    @Inject
+    private RelatorioService relatorioService;
+    @Inject
+    private AlunoService alunoService;
+
     private DynamicForm loginForm = Form.form();
 
     public Result index() {
@@ -52,7 +57,6 @@ public class Application extends Controller {
             return redirect(routes.Application.login());
         }
 
-        Crypto crypto = Play.application().injector().instanceOf(Crypto.class);
         session().put("email", usuario.email);
         session().put("permissao", usuario.permissao.name());
         session().put("p", crypto.encryptAES(usuario.permissao.name(), Play.application().configuration().getString("play.crypto.secret")));
@@ -73,7 +77,10 @@ public class Application extends Controller {
     @Security.Authenticated(AutenticacaoSegura.class)
     public Result admin() {
         List<Documento> documentos = etapaService.retornaTodosOrdenadoPorNumero();
-        return ok(admin.render(documentos, session(), request()));
+        List<Projeto> projetos = projetoService.retornaTodosProjetoAbertos();
+        Relatorio relatorio = relatorioService.proximoRelatorio();
+        Aluno aluno = alunoService.retornarPorUsuario(getUsuarioId());
+        return ok(admin.render(documentos,projetos,relatorio,aluno, session(), request(), flash()));
     }
 
 }

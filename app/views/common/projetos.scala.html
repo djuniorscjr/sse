@@ -1,0 +1,15 @@
+@(projetos : java.util.List[Projeto])
+
+  @for(projeto <- projetos) {
+        <p>Título: @projeto.titulo</p>
+        <p>Professor: @projeto.professor.nome</p>
+        <p>Quantidade de Alunos: @projeto.quantidadeMaxDeParticipantes</p>
+        <p>Descricao: @projeto.descricao</p>
+        @if(projeto.anexo != null){
+          <p class="center-align">@projeto.anexo.descricao
+            <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Download" href="@routes.AnexoController.dowloadArquivo(projeto.anexo.id.toString)">
+              <i class="small mdi-file-cloud-download green-text"></i>
+            </a>
+          </p>
+        }
+  }

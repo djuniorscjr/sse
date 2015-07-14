@@ -1,0 +1,41 @@
+@(relatorioForm: play.data.DynamicForm, quantidadeDeRelatorio : Integer)(implicit session : play.mvc.Http.Session,request : play.mvc.Http.Request, flash: play.mvc.Http.Flash)
+
+@import helper._
+@import util.Materialize._
+
+@dashboard("Cadastrar Novo Período do Relátorio"){
+  <div class="form_wrapper-medium">
+    <h3 class="red-text">Cadastra Período do Relátorio nº @quantidadeDeRelatorio </h3>
+
+    @form(routes.RelatorioController.cadastrar(), 'enctype -> "multipart/form-data"){
+      @if(flash.get("error")){
+        <p style="color:red" class="center-align">@flash.get("error")</p>
+      }
+      @if(flash.get("sucesso")){
+        <p style="color:blue" class="center-align">@flash.get("sucesso")</p>
+      }
+      @CSRF.formField
+
+      <div class="element-wrapper">
+      @helper.inputText(relatorioForm("dataDeEntrega"), '_label -> "Data de Entrega")(date, implicitly[Messages])
+      </div>
+      <div class="row">
+        <div class="input-field col s11">
+        @textarea(relatorioForm("descricao"), '_label -> "Descrição")(area, implicitly[Messages])
+        </div>
+      </div>
+      <div class="element-wrapper">
+        <div class="file-field input-field">
+          <input class="file-path validate" type="text" name="textorquivo"/>
+          <div class="btn">
+            <span>Arquivo</span>
+            <input type="file" name="arquivo"/>
+          </div>
+        </div>
+      </div>
+      <button class="btn waves-effect waves-light blue" type="submit" name="action">Cadastrar
+      </button>
+      <a class="waves-effect waves-teal btn-flat" href="@routes.RelatorioController.index()">Novo Período do Relátorio</a>
+    }
+  </div>
+}

@@ -15,4 +15,9 @@ public class Converter {
         return dateTime;
     }
 
+    public static String retornaStringPorData(DateTime data){
+        String dataEmString = data.getDayOfMonth() + "/" + data.getMonthOfYear() + "/" + data.getYear();
+        return dataEmString;
+    }
+
 }

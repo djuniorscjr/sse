@@ -37,7 +37,7 @@ public class BasicRepository {
     }
 
     public <T> T retornaObjetoPorCampo(Class<T> classToCast, String campo, Object valor){
-        return Ebean.find(classToCast).where().eq(campo, valor).findUnique();
+        return Ebean.find(classToCast).where().eq(campo, valor).setMaxRows(1).findUnique();
     }
 
     public <T> List<T> retornaListaPorCampo(Class<T> classToCast, String campo, Object valor){

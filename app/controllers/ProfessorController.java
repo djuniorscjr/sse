@@ -48,7 +48,7 @@ public class ProfessorController extends Controller {
         if(professor.hasErrors()){
             return badRequest(novo.render(professor, session(), request(), flash()));
         }else{
-            professorService.salvar(professor.get());
+            professorService.salvoPorOutroUser(professor.get());
             flash("sucesso", "Professor cadastrado com sucesso!");
         }
 

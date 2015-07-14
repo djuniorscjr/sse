@@ -40,4 +40,8 @@ public class ProjetoService {
     public void remover(Long projeto) {
         projetoRepository.deletar(Projeto.class, projeto);
     }
+
+    public List<Projeto> retornaTodosProjetoAbertos(){
+        return projetoRepository.retornaListaPorCampo(Projeto.class,"statusProjeto",StatusProjeto.ABERTO);
+    }
 }

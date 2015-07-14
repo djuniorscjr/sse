@@ -40,4 +40,7 @@ public class Projeto {
 
     @Enumerated(EnumType.STRING)
     public StatusProjeto statusProjeto;
+
+    @OneToMany(mappedBy = "projeto")
+    public List<SituacaoProjeto> situacaoProjetos;
 }

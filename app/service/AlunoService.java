@@ -41,4 +41,8 @@ public class AlunoService {
     public Aluno retornaPorId(Long id){
         return alunoRepository.getObjeto(Aluno.class, id);
     }
+
+    public Aluno retornarPorUsuario(Long id){
+        return alunoRepository.retornaObjetoPorCampo(Aluno.class, "usuario.id", id);
+    }
 }

@@ -66,12 +66,21 @@ create table relatorio (
   id                        bigserial not null,
   descricao                 TEXT,
   data_de_entrega           timestamp,
-  data_final                timestamp,
   status_relatorio          varchar(12),
   anexo_id                  bigint,
   constraint ck_relatorio_status_relatorio check (status_relatorio in ('NAO_INICIADO','INICIADO','FECHADO')),
   constraint uq_relatorio_anexo_id unique (anexo_id),
   constraint pk_relatorio primary key (id))
+;
+
+create table situacao_projeto (
+  id                        bigserial not null,
+  status_projeto            varchar(7),
+  data                      timestamp,
+  projeto_id                bigint,
+  usuario_id                bigint,
+  constraint ck_situacao_projeto_status_projeto check (status_projeto in ('ABERTO','FECHADO')),
+  constraint pk_situacao_projeto primary key (id))
 ;
 
 create table situacao_relatorio (
@@ -116,10 +125,14 @@ alter table projeto add constraint fk_projeto_professor_9 foreign key (professor
 create index ix_projeto_professor_9 on projeto (professor_id);
 alter table relatorio add constraint fk_relatorio_anexo_10 foreign key (anexo_id) references anexo (id);
 create index ix_relatorio_anexo_10 on relatorio (anexo_id);
-alter table situacao_relatorio add constraint fk_situacao_relatorio_relator_11 foreign key (relatorio_id) references relatorio (id);
-create index ix_situacao_relatorio_relator_11 on situacao_relatorio (relatorio_id);
-alter table situacao_relatorio add constraint fk_situacao_relatorio_usuario_12 foreign key (usuario_id) references usuario (id);
-create index ix_situacao_relatorio_usuario_12 on situacao_relatorio (usuario_id);
+alter table situacao_projeto add constraint fk_situacao_projeto_projeto_11 foreign key (projeto_id) references projeto (id);
+create index ix_situacao_projeto_projeto_11 on situacao_projeto (projeto_id);
+alter table situacao_projeto add constraint fk_situacao_projeto_usuario_12 foreign key (usuario_id) references usuario (id);
+create index ix_situacao_projeto_usuario_12 on situacao_projeto (usuario_id);
+alter table situacao_relatorio add constraint fk_situacao_relatorio_relator_13 foreign key (relatorio_id) references relatorio (id);
+create index ix_situacao_relatorio_relator_13 on situacao_relatorio (relatorio_id);
+alter table situacao_relatorio add constraint fk_situacao_relatorio_usuario_14 foreign key (usuario_id) references usuario (id);
+create index ix_situacao_relatorio_usuario_14 on situacao_relatorio (usuario_id);
 
 
 
@@ -138,6 +151,8 @@ drop table if exists professor cascade;
 drop table if exists projeto cascade;
 
 drop table if exists relatorio cascade;
+
+drop table if exists situacao_projeto cascade;
 
 drop table if exists situacao_relatorio cascade;
 

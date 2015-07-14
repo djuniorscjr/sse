@@ -1,0 +1,48 @@
+@(relatorioForm: play.data.DynamicForm, posicao : Integer, id : Long)(implicit session : play.mvc.Http.Session,request : play.mvc.Http.Request, flash: play.mvc.Http.Flash)
+
+@import helper._
+@import util.Materialize._
+
+@dashboard("Editar Período do Relátorio"){
+  <div class="form_wrapper-medium">
+    <h3 class="red-text">Editar Período do Relátorio nº @posicao </h3>
+
+    @form(routes.RelatorioController.editando(id), 'enctype -> "multipart/form-data"){
+      @if(flash.get("error")){
+        <p style="color:red" class="center-align">@flash.get("error")</p>
+      }
+      @if(flash.get("sucesso")){
+        <p style="color:blue" class="center-align">@flash.get("sucesso")</p>
+      }
+      @CSRF.formField
+
+      <div class="element-wrapper">
+      @helper.inputText(relatorioForm("dataDeEntrega"), '_label -> "Data de Entrega")(date, implicitly[Messages])
+      </div>
+      <div class="row">
+        <div class="input-field col s11">
+        @textarea(relatorioForm("descricao"), '_label -> "Descrição")(area, implicitly[Messages])
+        </div>
+      </div>
+      <div class="element-wrapper">
+      @if(relatorioForm.field("anexo.descricao").value()){
+        @relatorioForm.field("anexo.descricao").value() <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Download" href="@routes.AnexoController.dowloadArquivo(relatorioForm.field("anexo.id").value())">
+          <i class="small mdi-file-cloud-download green-text"></i>
+        </a>
+      }
+      </div>
+      <div class="element-wrapper">
+        <div class="file-field input-field">
+          <input class="file-path validate" type="text" name="textorquivo"/>
+          <div class="btn">
+            <span>Arquivo</span>
+            <input type="file" name="arquivo"/>
+          </div>
+        </div>
+      </div>
+      <button class="btn waves-effect waves-light blue" type="submit" name="action">Salvar
+      </button>
+      <a class="waves-effect waves-teal btn-flat" href="@routes.RelatorioController.consultar()">Voltar</a>
+    }
+  </div>
+}

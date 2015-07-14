@@ -47,6 +47,15 @@ public class ProfessorService {
         return professorRepository.salvar(professor);
     }
 
+    public Professor salvoPorOutroUser(Professor professor){
+        professor.usuario.ativo = true;
+        professor.usuario.dataDeCadastro = DateTime.now();
+        professor.usuario.permissao = Permissao.PROFESSOR_ORIENTADOR;
+        professor.usuario.senha = Crypt.sha1(professor.usuario.senha);
+        professor.usuario.token = crypto.generateToken();
+        return professorRepository.salvar(professor);
+    }
+
     public void enviarSolicitacaoRegistro(String emails) throws RegraDeNegocioException, IOException {
         Set<String> listaDeEmails = this.validaEnviarSolicitacaoRegistro(emails);
         for (String email : listaDeEmails) {

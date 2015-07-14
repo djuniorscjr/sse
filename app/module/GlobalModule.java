@@ -12,12 +12,18 @@ public class GlobalModule extends AbstractModule {
 
     @Override
     protected void configure() {
-         bind(AlunoService.class).toProvider(new Provider<AlunoService>() {
+        bind(BasicRepository.class).toProvider(new Provider<BasicRepository>() {
+            @Override
+            public BasicRepository get() {
+                return new BasicRepository();
+            }
+        });
+        bind(AlunoService.class).toProvider(new Provider<AlunoService>() {
              @Override
              public AlunoService get() {
                  return new AlunoService();
              }
-         });
+        });
         bind(AlunoRepository.class).toProvider(new Provider<AlunoRepository>() {
             @Override
             public AlunoRepository get() {

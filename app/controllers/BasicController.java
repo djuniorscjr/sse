@@ -11,7 +11,7 @@ import javax.inject.Inject;
  */
 public class BasicController extends Controller {
     @Inject
-    private Crypto crypto;
+    protected Crypto crypto;
 
     protected Long getUsuarioId(){
         return new Long(crypto.decryptAES(session().get("u"), Play.application().configuration().getString("play.crypto.secret")));
