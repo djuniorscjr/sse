@@ -33,4 +33,8 @@ public class Arquivo {
     @ManyToOne
     @PrimaryKeyJoinColumn
     public Aluno aluno;
+
+    @Enumerated(EnumType.STRING)
+    public StatusRelatorio statusRelatorio;
+
 }

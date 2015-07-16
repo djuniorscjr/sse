@@ -1,0 +1,30 @@
+@(spps : java.util.List[SolicitacaoDeParticipacao])
+
+@import helper._
+@import util.Materialize.area
+
+<ul class="collection">
+@for(spp <- spps) {
+  <li class="collection-item avatar">
+    <i class="material-icons circle">SPP</i>
+    <p>@spp.projeto.titulo <br />
+      Aluno @spp.aluno.nome &nbsp;&nbsp; email: @spp.aluno.usuario.email</p>
+    <a href="#modal1" class="secondary-content modal-trigger"><i class="material-icons">Detalhar</i></a>
+  </li>
+  <div id="modal1" class="modal modal-fixed-footer">
+    <div class="modal-content">
+      <h4>@spp.projeto.titulo</h4>
+      <small>Aluno @spp.aluno.nome &nbsp;&nbsp; email: @spp.aluno.usuario.email</small>
+      <p>Observação do Aluno</p>
+      <p>@spp.observacao</p>
+
+    </div>
+    <div class="modal-footer">
+
+      <a href="@routes.SolicitacaoParticipacaoController.aceito(spp.id,spp.projeto.id, spp.aluno.id)" class="modal-action waves-effect waves-green btn green">Aceitar</a>
+      <a href="@routes.SolicitacaoParticipacaoController.negado(spp.id,spp.projeto.id, spp.aluno.id)" class="modal-action waves-effect waves-red btn red">Negar</a>
+      <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">SAIR</a>
+    </div>
+  </div>
+}
+</ul>

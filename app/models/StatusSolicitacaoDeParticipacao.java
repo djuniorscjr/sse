@@ -6,7 +6,8 @@ package models;
 public enum StatusSolicitacaoDeParticipacao {
 
     ACEITO              ("Aceito"),
-    NEGADO              ("Negado");
+    NEGADO              ("Negado"),
+    ENVIADO             ("ENVIADO");
 
     public String descricao;
 

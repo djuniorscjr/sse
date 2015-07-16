@@ -27,4 +27,7 @@ public class SituacaoProjeto {
 
     @ManyToOne
     public Usuario usuario;
+
+    @Column(columnDefinition = "TEXT")
+    public String observacao;
 }

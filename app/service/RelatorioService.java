@@ -107,13 +107,18 @@ public class RelatorioService {
 
     public Relatorio proximoRelatorio(){
         Relatorio relatorio = relatorioRepository.retornarProximoRelatorio();
-        while(DateTime.now().isBefore(relatorio.dataDeEntrega)){
-            this.mudancaRelatorio(relatorio,StatusRelatorio.FECHADO);
-            relatorio = relatorioRepository.retornarProximoRelatorio();
-        }
+        try {
+            while (relatorio.dataDeEntrega.isBefore(DateTime.now())) {
 
-        if(relatorio.statusRelatorio == StatusRelatorio.NAO_INICIADO){
-            this.mudancaRelatorio(relatorio, StatusRelatorio.INICIADO);
+                this.mudancaRelatorio(relatorio, StatusRelatorio.FECHADO);
+                relatorio = relatorioRepository.retornarProximoRelatorio();
+            }
+
+            if (relatorio.statusRelatorio == StatusRelatorio.NAO_INICIADO) {
+                this.mudancaRelatorio(relatorio, StatusRelatorio.INICIADO);
+            }
+        }catch (NullPointerException e){
+            return relatorio;
         }
         return relatorio;
     }

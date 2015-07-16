@@ -31,16 +31,20 @@ public class Application extends BasicController {
     private RelatorioService relatorioService;
     @Inject
     private AlunoService alunoService;
+    @Inject
+    private SolicitacaoParticipacaoService solicitacaoParticipacaoService;
+    @Inject
+    private ArquivoService arquivoService;
 
     private DynamicForm loginForm = Form.form();
 
     public Result index() {
-        return ok(index.render(session(),request()));
+        return ok(index.render(session(), request()));
     }
 
 
     public Result login(){
-        return ok(login.render(loginForm,session(),request(),flash()));
+        return ok(login.render(loginForm, session(), request(), flash()));
     }
 
     public Result autenticacao(){
@@ -76,11 +80,15 @@ public class Application extends BasicController {
 
     @Security.Authenticated(AutenticacaoSegura.class)
     public Result admin() {
+
         List<Documento> documentos = etapaService.retornaTodosOrdenadoPorNumero();
         List<Projeto> projetos = projetoService.retornaTodosProjetoAbertos();
+        List<SolicitacaoDeParticipacao> solicitacaoDeParticipacoes = solicitacaoParticipacaoService.retornaTodasAsSolicitacoesPorProfessor(this.getUsuarioId());
+        List<Arquivo> arquivos = arquivoService.retornaTodosArquivoOrientador(this.getUsuarioId());
         Relatorio relatorio = relatorioService.proximoRelatorio();
-        Aluno aluno = alunoService.retornarPorUsuario(getUsuarioId());
-        return ok(admin.render(documentos,projetos,relatorio,aluno, session(), request(), flash()));
+        Aluno aluno = alunoService.retornarPorUsuario(this.getUsuarioId());
+        Arquivo file = arquivoService.recuperarPorRelatorio(relatorio);
+        return ok(admin.render(arquivos,file,solicitacaoDeParticipacoes,documentos,projetos,relatorio,aluno,loginForm, session(), request(), flash()));
     }
 
 }

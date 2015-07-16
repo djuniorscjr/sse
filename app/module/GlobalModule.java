@@ -90,7 +90,6 @@ public class GlobalModule extends AbstractModule {
                 return new RelatorioRepository();
             }
         });
-
         bind(AnexoService.class).toProvider(new Provider<AnexoService>() {
             @Override
             public AnexoService get() {
@@ -103,5 +102,30 @@ public class GlobalModule extends AbstractModule {
                 return new AnexoRepository();
             }
         });
+        bind(SolicitacaoParticipacaoService.class).toProvider(new Provider<SolicitacaoParticipacaoService>() {
+            @Override
+            public SolicitacaoParticipacaoService get() {
+                return new SolicitacaoParticipacaoService();
+            }
+        });
+        bind(SolicitacaoParticipacaoRepository.class).toProvider(new Provider<SolicitacaoParticipacaoRepository>() {
+            @Override
+            public SolicitacaoParticipacaoRepository get() {
+                return new SolicitacaoParticipacaoRepository();
+            }
+        });
+        bind(ArquivoService.class).toProvider(new Provider<ArquivoService>() {
+            @Override
+            public ArquivoService get() {
+                return new ArquivoService();
+            }
+        });
+        bind(ArquivoRepository.class).toProvider(new Provider<ArquivoRepository>() {
+            @Override
+            public ArquivoRepository get() {
+                return new ArquivoRepository();
+            }
+        });
+
     }
 }

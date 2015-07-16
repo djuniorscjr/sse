@@ -44,4 +44,15 @@ public class ProjetoService {
     public List<Projeto> retornaTodosProjetoAbertos(){
         return projetoRepository.retornaListaPorCampo(Projeto.class,"statusProjeto",StatusProjeto.ABERTO);
     }
+
+    public boolean projetoFechadaOuLotado(Long projetoId) {
+        boolean bool = false;
+        Projeto projeto = projetoRepository.getObjeto(Projeto.class, projetoId);
+        if(projeto.alunos.size() >= projeto.quantidadeMaxDeParticipantes){
+            bool = true;
+        }else if(projeto.statusProjeto.equals(StatusProjeto.FECHADO)){
+            bool = true;
+        }
+        return bool;
+    }
 }

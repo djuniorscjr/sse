@@ -6,7 +6,10 @@ package models;
 public enum StatusRelatorio {
     NAO_INICIADO         ("NÃO INICIADO"),
     INICIADO             ("INICIADO"),
-    FECHADO              ("FECHADO");
+    FECHADO              ("FECHADO"),
+    APROVADO             ("APROVADO"),
+    RECOMENDADO          ("RECOMENDADO"),
+    EM_ANDAMENTO         ("EM ANDAMENTO");
 
     public String descricao;
 

@@ -16,4 +16,8 @@ public class BasicController extends Controller {
     protected Long getUsuarioId(){
         return new Long(crypto.decryptAES(session().get("u"), Play.application().configuration().getString("play.crypto.secret")));
     }
+
+    protected String getPermissao(){
+        return crypto.decryptAES(session().get("p"), Play.application().configuration().getString("play.crypto.secret"));
+    }
 }

@@ -1,15 +1,43 @@
-@(projetos : java.util.List[Projeto])
+@(projetos : java.util.List[Projeto],projetoForm : play.data.DynamicForm)
 
+@import helper._
+@import util.Materialize.area
+
+<ul class="collection">
   @for(projeto <- projetos) {
-        <p>Título: @projeto.titulo</p>
-        <p>Professor: @projeto.professor.nome</p>
-        <p>Quantidade de Alunos: @projeto.quantidadeMaxDeParticipantes</p>
-        <p>Descricao: @projeto.descricao</p>
-        @if(projeto.anexo != null){
-          <p class="center-align">@projeto.anexo.descricao
-            <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Download" href="@routes.AnexoController.dowloadArquivo(projeto.anexo.id.toString)">
-              <i class="small mdi-file-cloud-download green-text"></i>
-            </a>
-          </p>
-        }
+      <li class="collection-item avatar">
+        <i class="material-icons circle">projeto</i>
+        <p>@projeto.titulo <br />
+        Prof. @projeto.professor.nome &nbsp;&nbsp; email @projeto.professor.usuario.email &nbsp;&nbsp;  Quantidade de Alunos: @projeto.quantidadeMaxDeParticipantes</p>
+      <a href="#modal1" class="secondary-content modal-trigger"><i class="material-icons">Detalhar</i></a>
+      </li>
+
+      <div id="modal1" class="modal modal-fixed-footer">
+        <div class="modal-content">
+          <h4>@projeto.titulo</h4>
+          <small>Prof. @projeto.professor.nome</small>
+          <p>@projeto.descricao</p>
+          @if(projeto.anexo != null){
+            <p class="center-align">@projeto.anexo.descricao
+              <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Download" href="@routes.AnexoController.dowloadArquivo(projeto.anexo.id.toString)">
+                <i class="small mdi-file-cloud-download green-text"></i>
+              </a>
+            </p>
+          }
+          @form(routes.SolicitacaoParticipacaoController.cadastrar(projeto.id)){
+            @CSRF.formField
+            <div class="row">
+              <div class="input-field col s11">
+              @textarea(projetoForm("observacao"), '_label -> "Observacão")(area, implicitly[Messages])
+              </div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+          <button class="modal-action modal-close waves-effect waves-green btn green">Solicita Participação</button>
+          }
+          <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">SAIR</a>
+        </div>
+      </div>
   }
+</ul>

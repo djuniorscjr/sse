@@ -1,0 +1,6 @@
+@(elements: views.html.helper.FieldElements)
+
+
+<input id="@elements.field.id" name="@elements.field.name"
+type="radio" value="@elements.field.value.getOrElse("")">
+<label for="@elements.field.id">@elements.args.get('_label)</label>

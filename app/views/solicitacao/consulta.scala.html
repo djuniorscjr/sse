@@ -1,0 +1,34 @@
+@(solicitacoes: java.util.List[SolicitacaoDeParticipacao])(implicit session : play.mvc.Http.Session,request : play.mvc.Http.Request, flash: play.mvc.Http.Flash)
+
+
+
+@dashboard("Consultar Solicitações de Participação em Projeto"){
+  <div id="message">@flash.get("sucesso")</div>
+  <div class="form_wrapper-medium">
+    <h5 class="red-text">Consulta Solicitações de Participação </h5>
+    <table id="table">
+      <thead>
+        <tr>
+          <th>Data</th>
+          <th>Projeto</th>
+          <th>Aluno</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+
+      <tbody>
+      @for(solicitacao <- solicitacoes) {
+        <tr>
+          <td>@solicitacao.data.dayOfMonth().get()/@solicitacao.data.monthOfYear().get()/@solicitacao.data.year().get()</td>
+          <td>@solicitacao.projeto.titulo</td>
+          <td>@solicitacao.aluno.nome</td>
+          <td>@solicitacao.statusSolicitacaoDeParticipacao.descricao</td>
+        </tr>
+      }
+
+      </tbody>
+    </table>
+  </div>
+
+}
+

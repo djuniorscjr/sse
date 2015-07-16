@@ -1,4 +1,8 @@
-@(relatorio : Relatorio)
+@(relatorio : Relatorio, arquivo: Arquivo)
+
+@import helper._
+  @import util.Materialize.area
+
 
   <p>Data de Entrega: @relatorio.dataDeEntrega.getDayOfMonth/@relatorio.dataDeEntrega.getMonthOfYear/@relatorio.dataDeEntrega.getYear </p>
   <p>Descricao: @relatorio.descricao</p>
@@ -8,5 +12,44 @@
         <i class="small mdi-file-cloud-download green-text"></i>
       </a>
     </p>
+  }
+  @if(arquivo != null && arquivo.id != null) {
+  <div class="form_wrapper-medium">
+    <p>Data de sua entrega: @arquivo.data.getDayOfMonth/@arquivo.data.getMonthOfYear/@arquivo.data.getYear </p>
+    <p>Descricao: @relatorio.descricao</p>
+    @if(arquivo.anexo != null){
+      <p class="center-align">@arquivo.anexo.descricao
+        <a class="tooltipped" data-position="right" data-delay="50" data-tooltip="Download" href="@routes.AnexoController.dowloadArquivo(arquivo.anexo.id.toString)">
+          <i class="small mdi-file-cloud-download green-text"></i>
+        </a>
+      </p>
+    }
+    @if(arquivo.statusRelatorio == StatusRelatorio.EM_ANDAMENTO){
+      <p>AGUARDE O RETORNO DO SEU ORIENTADOR</p>
+    }
+    @if(arquivo.statusRelatorio == StatusRelatorio.RECOMENDADO){
+
+    }
+    </div>
+  }else {
+  <div class="form_wrapper-medium">
+    <h3 class="red-text">Adicionar Relatório </h3>
+    @helper.form(routes.RelatorioAlunoController.cadastrar(relatorio.id), 'enctype -> "multipart/form-data") {
+      @CSRF.formField
+
+      <div class="element-wrapper">
+        <div class="file-field input-field">
+          <input class="file-path validate" type="text" name="textorquivo"/>
+          <div class="btn">
+            <span>Arquivo</span>
+            <input type="file" name="arquivo"/>
+          </div>
+        </div>
+      </div>
+      <button class="btn waves-effect waves-light blue" type="submit" name="action">Salvar
+      </button>
+
+    }
+  </div>
   }
 
